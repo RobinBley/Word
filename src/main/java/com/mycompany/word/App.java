@@ -6,7 +6,7 @@ import com.mycompany.word.filewriter.Writer;
 import com.mycompany.word.filewriter.WriterImpl;
 import com.mycompany.word.paths.Path;
 import com.mycompany.word.paths.PathImpl;
-import java.util.Properties;
+import java.util.Scanner;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -20,20 +20,14 @@ public class App {
     private Writer writer;
     private Reader reader;
 
-    public App()  {
-//        try {
-            ctx = new ClassPathXmlApplicationContext("application-context.xml");
-            
-            Path path = (Path) ctx.getBean(PathImpl.class);
-            Writer writer = (Writer) ctx.getBean(WriterImpl.class);
-            Properties props = new Properties();
-            Reader reader = (Reader) ctx.getBean(ReaderImpl.class);
-            System.out.println(reader.readFile());
-//            File f = new File("app.properties");
-//            props.load(new FileReader(f));
-//            props.setProperty("filename", "test2");
-//        } catch (IOException ex) {
-//        }
+    public App() {
+
+        ctx = new ClassPathXmlApplicationContext("application-context.xml");
+
+        path = (Path) ctx.getBean(PathImpl.class);
+        writer = (Writer) ctx.getBean(WriterImpl.class);
+        reader = (Reader) ctx.getBean(ReaderImpl.class);
+
     }
 
     public Path getPath() {
@@ -50,37 +44,50 @@ public class App {
 
     public static void main(String[] args) {
         App app = new App();
-//        int input = 0;
-//        boolean run = false;
-//
-//        while (run) {
-//            Scanner scan = new Scanner(System.in);
-//            System.out.println("eingabe\n0=directory\n1=read\n2=write\nelse=break");
-//            try {
-//                input = scan.nextInt();
-//            } catch (Exception e) {
-//                run = false;
-//            }
-//
-//            switch (input) {
-//                case 0:
-//                    break;
-//                case 1:
-//                    break;
-//                case 2:
-//                    System.out.println("filename:");
-//                    String filename = scan.next();
-//                    System.out.println("output");
-//                    String output = scan.next();
-//                    app.writer.writeInFile(output);
-//                    break;
-//                default:
-//                    run = false;
-//                    break;
-//
-//            }
-//
-//        }
+
+        int input = 5;
+        boolean run = true;
+
+        while (run) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("\n" + app.getPath().getFilepath() + "\neingabe:\n0=directory\n1=read\n2=write\n3=Change file\nelse=break");
+            try {
+                input = scan.nextInt();
+            } catch (Exception e) {
+                run = false;
+            }
+
+            switch (input) {
+                case 0:
+                    System.out.println("\n" + app.getReader().showFiles());
+                    break;
+                case 1:
+                    System.out.println("\n" + app.getReader().readFile());
+                    break;
+                case 2:
+                    try{
+                    System.out.println("output");
+                    String output = scan.next();
+                    System.out.println("Append?:");
+                    boolean flag = scan.nextBoolean();
+                    app.writer.writeInFile(output, flag);
+                    }catch(Exception e){
+                        System.out.println("Falsche Eingabe");
+                        break;
+                    }
+                    break;
+                case 3:
+                    System.out.println("new filename:");
+                    String newFilename = scan.next();
+                    ChangeProperties.changePropertie("filename", newFilename);
+                    break;
+                default:
+                    run = false;
+                    break;
+
+            }
+
+        }
     }
 
 }

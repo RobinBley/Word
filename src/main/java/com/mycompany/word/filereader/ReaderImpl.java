@@ -30,6 +30,7 @@ public class ReaderImpl implements Reader {
 
                 bufferedReader = new BufferedReader(new FileReader(filepath));
             } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
             }
 
             try {
@@ -37,6 +38,7 @@ public class ReaderImpl implements Reader {
                     builder.append(bufferedReader.readLine() + "\n");
                 }
             } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
         return builder.toString();

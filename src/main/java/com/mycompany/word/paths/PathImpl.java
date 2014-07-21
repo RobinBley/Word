@@ -14,7 +14,6 @@ public class PathImpl implements Path {
     private String filedirectory;
     @Value("${filename}")
     private String filename;
-    private String filepath;
 
     @Override
     public String getFilepath() {
@@ -37,8 +36,8 @@ public class PathImpl implements Path {
     }
 
     @Override
-    public void setFiledirectory(String filepath) {
-        this.filepath = filepath;
+    public void setFiledirectory(String filedirectory) {
+        this.filedirectory = filedirectory;
     }
 
 

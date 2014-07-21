@@ -16,16 +16,17 @@ import org.springframework.stereotype.Service;
 public class WriterImpl implements Writer {
 
     @Override
-    public void writeInFile(String text) {
+    public void writeInFile(String text, boolean flag) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
         String filepath = ((Path) ctx.getBean(PathImpl.class)).getFilepath();
 
         try {
-            FileWriter writer = new FileWriter(filepath);
+            FileWriter writer = new FileWriter(filepath, flag);
             writer.write(text);
             writer.close();
 
         } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }
