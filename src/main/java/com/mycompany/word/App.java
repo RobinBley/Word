@@ -27,7 +27,7 @@ public class App {
         path = (Path) ctx.getBean(PathImpl.class);
         writer = (Writer) ctx.getBean(WriterImpl.class);
         reader = (Reader) ctx.getBean(ReaderImpl.class);
-
+        
     }
 
     public Path getPath() {
@@ -65,13 +65,13 @@ public class App {
                     System.out.println("\n" + app.getReader().readFile());
                     break;
                 case 2:
-                    try{
-                    System.out.println("output");
-                    String output = scan.next();
-                    System.out.println("Append?:");
-                    boolean flag = scan.nextBoolean();
-                    app.writer.writeInFile(output, flag);
-                    }catch(Exception e){
+                    try {
+                        System.out.println("output");
+                        String output = scan.next();
+                        System.out.println("Append?(boolean):");
+                        boolean flag = scan.nextBoolean();
+                        app.writer.writeInFile(output, flag);
+                    } catch (Exception e) {
                         System.out.println("Falsche Eingabe");
                         break;
                     }

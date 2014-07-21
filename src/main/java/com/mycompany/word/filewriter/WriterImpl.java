@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class WriterImpl implements Writer {
-
+    
     @Override
     public void writeInFile(String text, boolean flag) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
@@ -22,7 +22,7 @@ public class WriterImpl implements Writer {
 
         try {
             FileWriter writer = new FileWriter(filepath, flag);
-            writer.write(text);
+            writer.write("\n" + text);
             writer.close();
 
         } catch (IOException ex) {
