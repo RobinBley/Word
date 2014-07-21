@@ -6,14 +6,12 @@
 
 package com.mycompany.word.readdirectoy;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author rbley
  */
 public interface Directoyreader {
     
-    ArrayList<String> showFiles();
+    String showFiles();
     
 }

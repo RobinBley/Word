@@ -5,67 +5,63 @@
  */
 package com.mycompany.word.filereader;
 
+import com.mycompany.word.paths.Path;
+import com.mycompany.word.paths.PathImpl;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ReaderImpl implements Reader {
 
-   
-    private String filename;
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public BufferedReader getBufferedReader() {
-        return bufferedReader;
-    }
-
-    public void setBufferedReader(BufferedReader bufferedReader) {
-        this.bufferedReader = bufferedReader;
-    }
-
-    public FileReader getFileReader() {
-        return fileReader;
-    }
-
-    public void setFileReader(FileReader fileReader) {
-        this.fileReader = fileReader;
-    }
-    private BufferedReader bufferedReader;
-    private FileReader fileReader;
-    @Autowired
-    private String filepath;
-
     @Override
-    public ArrayList<String> readFile() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filepath));
-        } catch (FileNotFoundException ex) {
-        }
-        
-        try {
-            while (bufferedReader.ready()) {
-                System.out.println(bufferedReader.readLine());
+    public String readFile() {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
+        String filepath = ((Path) ctx.getBean(PathImpl.class)).getFilepath();
+        StringBuilder builder = new StringBuilder();
+        File f = new File(filepath);
+        if (f.exists()) {
+            BufferedReader bufferedReader = null;
+            try {
+
+                bufferedReader = new BufferedReader(new FileReader(filepath));
+            } catch (FileNotFoundException ex) {
             }
-        } catch (IOException ex) {
+
+            try {
+                while (bufferedReader.ready()) {
+                    builder.append(bufferedReader.readLine() + "\n");
+                }
+            } catch (IOException ex) {
+            }
         }
-        return null;
+        return builder.toString();
     }
 
     @Override
-    public ArrayList<String> showFiles() {
-        
-        return null;
+    public String showFiles() {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
+        String filepath = ((Path) ctx.getBean(PathImpl.class)).getFiledirectory();
+        StringBuilder builder = new StringBuilder();
+        File f = new File(filepath);
 
+        if (f.exists()) {
+            File file = new File(filepath);
+            File[] listOfFiles = file.listFiles();
+            try {
+                for (File fileOfList : listOfFiles) {
+                    if (fileOfList.isFile()) {
+                        builder.append(fileOfList.getName() + "\n");
+                    }
+                }
+            } catch (Exception e) {
+                
+            }
+        }
+        return builder.toString();
     }
-
 }

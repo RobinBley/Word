@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface Reader {
     
-    ArrayList<String> readFile();
+    String readFile();
     
-    ArrayList<String> showFiles();
+    String showFiles();
 }
