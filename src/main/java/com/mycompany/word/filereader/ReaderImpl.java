@@ -18,32 +18,6 @@ import org.springframework.stereotype.Service;
 public class ReaderImpl implements Reader {
 
     private final transient static Logger log = Logger.getLogger(ReaderImpl.class);
-//    @Value("${filename}")
-//    private String filename;
-//
-//    @Value("${filedirectory}")
-//    private String filedirectory;
-//    
-//
-//    public String getFilepath() {
-//        return filedirectory + filename;
-//    }
-//
-//    public String getFilename() {
-//        return filename;
-//    }
-//
-//    public void setFilename(String filename) {
-//        this.filename = filename;
-//    }
-//
-//    public String getFiledirectory() {
-//        return filedirectory;
-//    }
-//
-//    public void setFiledirectory(String filedirectory) {
-//        this.filedirectory = filedirectory;
-//    }
 
     @Override
     public String readFile(String filepath) {

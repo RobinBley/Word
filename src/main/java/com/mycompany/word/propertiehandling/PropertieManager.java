@@ -23,13 +23,16 @@ public final class PropertieManager {
     private final transient static Logger LOG = Logger.getLogger(ReaderImpl.class);
 
     private PropertieManager() {
-        
+
     }
 
     public static Properties getPropertie() {
         final Properties props = new Properties();
         File propertiefile;
         propertiefile = new File("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties");
+
+//        final Properties props = new Properties();
+//        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("app.properties");
 
         try {
             props.load(new FileInputStream(propertiefile));

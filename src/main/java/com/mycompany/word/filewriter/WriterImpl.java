@@ -7,27 +7,15 @@ package com.mycompany.word.filewriter;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WriterImpl implements Writer {
 
-    @Value("${filename}")
-    String filename;
-
-    @Value("$filedirectory")
-    String filedirectory;
-
-    String filepath;
-
-    public WriterImpl() {
-        filepath = filedirectory + filename;
-    }
-
     @Override
     public void writeInFile(String filepath, String text, boolean flag) {
+        filepath = "/" + filepath;
         final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
 
         try {

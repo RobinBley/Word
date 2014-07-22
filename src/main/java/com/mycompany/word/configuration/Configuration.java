@@ -4,39 +4,23 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.word.assignment;
+package com.mycompany.word.configuration;
 
-import com.mycompany.word.ausgabe.Ausgabe;
 import com.mycompany.word.filereader.Reader;
 import com.mycompany.word.filewriter.Writer;
-import com.mycompany.word.menue.Menue;
 import com.mycompany.word.paths.Path;
 
 /**
  *
  * @author rbley
  */
-public interface Zuordnung {
+public interface Configuration {
     
-    Menue getMenue();
-
-    void setMenue(Menue menue);
-
-
-    Ausgabe getAusgabe();
-
-    void setAusgabe(Ausgabe ausgabe);
-
-    Writer getWriter();
-
-    void setWriter(Writer writer);
-
     Reader getReader();
-
-    void setReader(Reader reader);
-
+    Writer getWriter();
     Path getPath();
-    
+    void setReader(Reader reader);
+    void setWriter(Writer writer);
     void setPath(Path path);
     
 }

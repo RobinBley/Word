@@ -5,13 +5,10 @@
  */
 package com.mycompany.word.menue;
 
-import com.mycompany.word.filereader.Reader;
-import com.mycompany.word.filewriter.Writer;
-import com.mycompany.word.paths.Path;
+import com.mycompany.word.configuration.Configuration;
 import java.util.ArrayList;
 import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,49 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class Menue {
 
-    @Value("${filedirectory}")
-    private String filedirectory;
     @Autowired
-    private Reader reader;
-    @Autowired
-    private Writer writer;
-    @Autowired
-    Path path;
+    private Configuration config;
 
-    public Path getPath() {
-        return path;
-    }
-
-    public void setPath(Path path) {
-        this.path = path;
-    }
-
-    public String getFiledirectory() {
-        return filedirectory;
-    }
-
-    public void setFiledirectory(String filedirectory) {
-        this.filedirectory = filedirectory;
-    }
-
-    public Reader getReader() {
-        return reader;
-    }
-
-    public void setReader(Reader reader) {
-        this.reader = reader;
-    }
-
-    public Writer getWriter() {
-        return writer;
-    }
-
-    public void setWriter(Writer writer) {
-        this.writer = writer;
-    }
 
     protected void showFiles(Scanner scan) {
-        final ArrayList<String> files = getReader().showFiles(path.getFiledirectory());
+        final ArrayList<String> files = config.getReader().showFiles(config.getPath().getFiledirectory());
         int counter = 0;
         System.out.println("choose file:");
 
@@ -77,7 +37,7 @@ public class Menue {
         while (run) {
             final int input = scan.nextInt();
             if (input <= files.size() - 1) {
-                path.setFilename("/" + files.get(input));
+                config.getPath().setFilename(files.get(input));
                 run = false;
 
             } else {
@@ -89,7 +49,7 @@ public class Menue {
     }
 
     protected void readFile() {
-        System.out.println("\n" + getReader().readFile(getPath().getFilepath()));
+        System.out.println("\n" + config.getReader().readFile(config.getPath().getFilepath()));
     }
 
     protected void writeFrile(final Scanner scan) {
@@ -98,7 +58,7 @@ public class Menue {
             String output = scan.next();
             System.out.println("Append?(boolean):");
             boolean flag = scan.nextBoolean();
-            getWriter().writeInFile(getPath().getFilepath(), output, flag);
+            config.getWriter().writeInFile(config.getPath().getFilepath(), output, flag);
         } catch (Exception e) {
             System.out.println("Falsche Eingabe");
         }
