@@ -5,7 +5,7 @@
  */
 package com.mycompany.word.assignment;
 
-import com.mycompany.word.Ausgabe.Ausgabe;
+import com.mycompany.word.ausgabe.Ausgabe;
 import com.mycompany.word.filereader.Reader;
 import com.mycompany.word.filewriter.Writer;
 import com.mycompany.word.menue.Menue;

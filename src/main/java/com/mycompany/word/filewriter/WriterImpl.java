@@ -28,10 +28,10 @@ public class WriterImpl implements Writer {
 
     @Override
     public void writeInFile(String filepath, String text, boolean flag) {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
+        final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
 
         try {
-            FileWriter writer = new FileWriter(filepath, flag);
+            final FileWriter writer = new FileWriter(filepath, flag);
             writer.write(text);
             writer.close();
 

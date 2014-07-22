@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.word.Ausgabe;
+package com.mycompany.word.ausgabe;
 
 /**
  *

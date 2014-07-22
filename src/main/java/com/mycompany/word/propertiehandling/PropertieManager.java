@@ -5,48 +5,54 @@
  */
 package com.mycompany.word.propertiehandling;
 
+import com.mycompany.word.filereader.ReaderImpl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author rbley
  */
-public class PropertieManager {
+public final class PropertieManager {
+
+    private final transient static Logger LOG = Logger.getLogger(ReaderImpl.class);
+
+    private PropertieManager() {
+        
+    }
 
     public static Properties getPropertie() {
-        Properties props = new Properties();
-        File f = new File("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties");
+        final Properties props = new Properties();
+        File propertiefile;
+        propertiefile = new File("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties");
 
         try {
-            props.load(new FileInputStream(f));
+            props.load(new FileInputStream(propertiefile));
 
-            return props;
         } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+            LOG.debug("fileInputStream PrpertieManager", ex);
         }
+        return props;
     }
-    
-    
-        public static boolean changePropertie(String propertie, String value) {
 
-        Properties props = new Properties();
-        File f = new File("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties");
+    public static void changePropertie(final String propertie, final String value) {
+
+        final Properties props = new Properties();
+        File propertiefile;
+        propertiefile = new File("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties");
         try {
-            props.load(new FileInputStream(f));
-            OutputStream out = new FileOutputStream("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties", false);
+            props.load(new FileInputStream(propertiefile));
+            final OutputStream out = new FileOutputStream("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties", false);
             props.setProperty(propertie, value);
             props.store(out, null);
 
-            return true;
         } catch (IOException ex) {
-            ex.printStackTrace();
-            return false;
+            LOG.debug("fehler beim laden der Properties", ex);
         }
 
     }

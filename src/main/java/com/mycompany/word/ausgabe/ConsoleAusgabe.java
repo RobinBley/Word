@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.word.Ausgabe;
+package com.mycompany.word.ausgabe;
 
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class ConsoleAusgabe implements Ausgabe {
 
     @Override
-    public boolean ausgeben(String output) {
+    public boolean ausgeben(final String output) {
         try {
             System.out.println(output);
             return true;

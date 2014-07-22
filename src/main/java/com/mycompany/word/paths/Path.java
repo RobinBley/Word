@@ -7,14 +7,14 @@ package com.mycompany.word.paths;
 public interface Path {
     
 
-    public String getFilepath();
+    String getFilepath();
 
-    public String getFilename();
+    String getFilename();
 
-    public void setFilename(String filename);
+    void setFilename(String filename);
     
-    public String getFiledirectory();
+    String getFiledirectory();
     
-    public void setFiledirectory(String filepath);
+    void setFiledirectory(String filepath);
     
 }

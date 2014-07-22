@@ -76,9 +76,9 @@ public class ReaderImpl implements Reader {
         final File f = new File(filepath);
 
         if (f.exists()) {
-            File[] listOfFiles = f.listFiles();
+            final File[] listOfFiles = f.listFiles();
             try {
-                for (File fileOfList : listOfFiles) {
+                for (final File fileOfList : listOfFiles) {
                     if (fileOfList.isFile()) {
                         files.add(fileOfList.getName());
                     }

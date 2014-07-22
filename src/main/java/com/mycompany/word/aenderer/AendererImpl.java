@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AendererImpl implements Aenderer {
 
+    private String lala;
+    
     @Override
     public String textAendern(String text) {
+        String hallo;
         return text.toUpperCase();
         
     }
