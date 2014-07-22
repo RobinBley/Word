@@ -13,7 +13,7 @@ package com.mycompany.word.filewriter;
 public interface Writer {
     
 
-    void writeInFile(String text, boolean flag);
+    void writeInFile(String filepath, String text, boolean flag);
     
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.word;
+package com.mycompany.word.propertiehandling;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,9 +16,24 @@ import java.util.Properties;
  *
  * @author rbley
  */
-public class ChangeProperties {
+public class PropertieManager {
 
-    public static boolean changePropertie(String propertie, String value) {
+    public static Properties getPropertie() {
+        Properties props = new Properties();
+        File f = new File("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties");
+
+        try {
+            props.load(new FileInputStream(f));
+
+            return props;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
+    
+        public static boolean changePropertie(String propertie, String value) {
 
         Properties props = new Properties();
         File f = new File("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties");
