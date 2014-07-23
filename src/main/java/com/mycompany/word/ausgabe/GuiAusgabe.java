@@ -6,7 +6,7 @@
 
 package com.mycompany.word.ausgabe;
 
-import com.mycompany.word.Gui;
+import com.mycompany.word.gui.Gui;
 import org.springframework.stereotype.Service;
 
 /**

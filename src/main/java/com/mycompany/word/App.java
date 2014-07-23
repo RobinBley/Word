@@ -1,6 +1,6 @@
 package com.mycompany.word;
 
-import com.mycompany.word.propertiehandling.PropertieManager;
+import com.mycompany.word.gui.Gui;
 
 /**
  *

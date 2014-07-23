@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.word;
+package com.mycompany.word.gui;
 
 import com.mycompany.word.assignment.Zuordnung;
 import com.mycompany.word.propertiehandling.PropertieManager;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -44,6 +45,7 @@ public class Gui extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel(new FlowLayout());
+        panel.setBackground(Color.white);
         label = new JLabel();
         label.setText("Eingabe:");
 //        panel.add(label);
@@ -53,10 +55,9 @@ public class Gui extends JFrame {
         list = new JList(listModel);
         panel.add(list);
         button = new JButton();
-        button.setText("Write to File");
+        button.setText("Hinzufuegen");
         panel.add(button);
         getContentPane().add(panel);
-        setVisible(true);
 
         textfield.addMouseListener(new MouseAdapter() {
             @Override
@@ -70,11 +71,13 @@ public class Gui extends JFrame {
                 showMenue();
             }
         });
+        refreshList();
+        pack();
+        setVisible(true);
     }
 
     public void addToList(String text) {
         listModel.addElement(text);
-//        listModel.removeAllElements();
     }
 
     public void setLabelText(String text) {
@@ -87,12 +90,12 @@ public class Gui extends JFrame {
         for (String row : split) {
             listModel.addElement(row);
         }
-//        listModel.addElement(zuordnung.getReader().readFile(zuordnung.getPath().getFilepath()));
     }
 
     public void showMenue() {
         zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), textfield.getText() + System.getProperty("line.separator"), true);
         refreshList();
+        pack();
     }
 
 }
