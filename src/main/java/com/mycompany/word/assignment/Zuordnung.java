@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.word.assignment;
 
 import com.mycompany.word.ausgabe.Ausgabe;
@@ -11,17 +10,17 @@ import com.mycompany.word.filereader.Reader;
 import com.mycompany.word.filewriter.Writer;
 import com.mycompany.word.menue.Menue;
 import com.mycompany.word.paths.Path;
+import com.mycompany.word.userinput.Eingabe;
 
 /**
  *
  * @author rbley
  */
 public interface Zuordnung {
-    
+
     Menue getMenue();
 
     void setMenue(Menue menue);
-
 
     Ausgabe getAusgabe();
 
@@ -36,7 +35,11 @@ public interface Zuordnung {
     void setReader(Reader reader);
 
     Path getPath();
-    
+
     void setPath(Path path);
-    
+
+    Eingabe getEingabe();
+
+    void setEingabe(Eingabe eingabe);
+
 }

@@ -1,7 +1,6 @@
 package com.mycompany.word;
 
-import com.mycompany.word.assignment.Zuordnung;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.mycompany.word.propertiehandling.PropertieManager;
 
 /**
  *
@@ -14,9 +13,9 @@ public final class App {
     }
 
     public static void main(final String[] args) {
-        final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
-        final Zuordnung zdg = (Zuordnung)ctx.getBean("zuordnungJdbc");
-        zdg.getMenue().showMenue();
+//        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
+        PropertieManager.getInstance().getZuordnung().getMenue().showMenue();
+        
 
     }
 

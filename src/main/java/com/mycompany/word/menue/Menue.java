@@ -5,10 +5,10 @@
  */
 package com.mycompany.word.menue;
 
-import com.mycompany.word.configuration.Configuration;
+import com.mycompany.word.assignment.Zuordnung;
+import com.mycompany.word.propertiehandling.PropertieManager;
 import java.util.ArrayList;
 import java.util.Scanner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,54 +18,59 @@ import org.springframework.stereotype.Service;
 @Service
 public class Menue {
 
-    @Autowired
-    private Configuration config;
-
+    private Zuordnung zuordnung;
 
     protected void showFiles(Scanner scan) {
-        final ArrayList<String> files = config.getReader().showFiles(config.getPath().getFiledirectory());
+        final ArrayList<String> files = zuordnung.getReader().showFiles(zuordnung.getPath().getFiledirectory());
         int counter = 0;
-        System.out.println("choose file:");
 
-        for (String file : files) {
-            System.out.println(counter + "= " + file);
-            counter++;
-        }
-        System.out.println("else= break");
+        zuordnung.getEingabe().showFile();
+        if (files != null) {
+            for (String file : files) {
+                System.out.println(counter + " = " + file);
+                counter++;
+            }
+            boolean run;
 
-        boolean run = true;
-        while (run) {
-            final int input = scan.nextInt();
-            if (input <= files.size() - 1) {
-                config.getPath().setFilename(files.get(input));
-                run = false;
+            if (counter > 0) {
 
+                run = true;
             } else {
-                System.out.println("Falsche Eingabe");
                 run = false;
+            }
+            while (run) {
+                final int input = scan.nextInt();
+                if (input <= files.size() - 1) {
+                    zuordnung.getPath().setFilename(files.get(input));
+                    run = false;
 
+                } else {
+                    System.out.println("Falsche Eingabe");
+                    run = false;
+
+                }
             }
         }
     }
 
     protected void readFile() {
-        System.out.println("\n" + config.getReader().readFile(config.getPath().getFilepath()));
+
+//        System.out.println("\n\n\ntest\n\n\n");
+        System.out.println("\n" + zuordnung.getReader().readFile(zuordnung.getPath().getFilepath()));
     }
 
     protected void writeFrile(final Scanner scan) {
         try {
-            System.out.println("output");
+            System.out.println("output:");
             String output = scan.next();
-            System.out.println("Append?(boolean):");
-            boolean flag = scan.nextBoolean();
-            config.getWriter().writeInFile(config.getPath().getFilepath(), output, flag);
+            zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), output, true);
         } catch (Exception e) {
             System.out.println("Falsche Eingabe");
         }
-
     }
 
     public void showMenue() {
+        zuordnung = PropertieManager.getInstance().getZuordnung();
         boolean run = true;
 
         while (run) {
@@ -75,8 +80,7 @@ public class Menue {
             try {
                 showFiles(scan);
 
-                System.out.println("\n0=read file \n1=write into file\nelse=break");
-
+                zuordnung.getEingabe().readFile();
                 final int input = scan.nextInt();
 
                 switch (input) {

@@ -35,8 +35,9 @@ public class ReaderJdbc implements Reader {
 //                Statement stmt = connection.createStatement();
 //                stmt.executeQuery(sql);
 
-                PreparedStatement ps = connection.prepareStatement("select * from APP.?");
-                ps.setString(1, table);
+//                PreparedStatement ps = connection.prepareStatement("select * from APP.?");
+//                ps.setString(1, table);
+                PreparedStatement ps = connection.prepareStatement("Select * from App.MyTable");
                 ResultSet result = ps.executeQuery();
                 boolean run = true;
                 while (run) {
@@ -58,30 +59,30 @@ public class ReaderJdbc implements Reader {
 
     @Override
     public ArrayList<String> showFiles(String table) {
-        Connection connection = JdbcConnection.getInstance().connect();
-        ArrayList<String> data = new ArrayList<>();
-
-        if (connection != null) {
-            try {
-                //GET TABLE NAMES
-                PreparedStatement ps = connection.prepareStatement("Select * from App.MyTable");
-
-                ResultSet result = ps.executeQuery();
-                boolean run = true;
-                while (run) {
-                    if (result.next()) {
-                        data.add(result.getString(1));
-                    } else {
-                        run = false;
-                        log.debug("no result");
-                    }
-                }
-                connection.close();
-                return data;
-            } catch (SQLException ex) {
-                log.debug("execute of Query", ex);
-            }
-        }
+//        Connection connection = JdbcConnection.getInstance().connect();
+//        ArrayList<String> data = new ArrayList<>();
+//
+//        if (connection != null) {
+//            try {
+//                //GET TABLE NAMES
+//                PreparedStatement ps = connection.prepareStatement("Select * from App.MyTable");
+//
+//                ResultSet result = ps.executeQuery();
+//                boolean run = true;
+//                while (run) {
+//                    if (result.next()) {
+//                        data.add(result.getString(1));
+//                    } else {
+//                        run = false;
+//                        log.debug("no result");
+//                    }
+//                }
+//                connection.close();
+//                return data;
+//            } catch (SQLException ex) {
+//                log.debug("execute of Query", ex);
+//            }
+//        }
         return null;
 
     }

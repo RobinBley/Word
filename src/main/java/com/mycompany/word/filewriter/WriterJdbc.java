@@ -20,26 +20,26 @@ import org.springframework.stereotype.Service;
 public class WriterJdbc implements Writer {
 
     private final static transient Logger log = Logger.getLogger(WriterJdbc.class);
-
-    public void createTable(String tablename) {
-        Connection connection = JdbcConnection.getInstance().connect();
-        if (connection != null) {
-            try {
-//                String sql = "CREATE TABLE TextDatein" + "(inhalt VARCHAR(255)" + "PRIMARY KEY (inhalt))";
-//                Statement stmt = connection.createStatement();
-//                stmt.executeQuery(sql);
-
-                PreparedStatement ps = connection.prepareStatement("CREATE TABLE ?" + "(inhalt VARCHAR(255)" + "PRIMARY KEY (inhalt))");
-                ps.setString(1, tablename);
-                ps.executeQuery();
-                connection.close();
-            } catch (SQLException ex) {
-                log.debug("execute of Query", ex);
-
-            }
-        }
-
-    }
+//
+//    public void createTable(String tablename) {
+//        Connection connection = JdbcConnection.getInstance().connect();
+//        if (connection != null) {
+//            try {
+////                String sql = "CREATE TABLE TextDatein" + "(inhalt VARCHAR(255)" + "PRIMARY KEY (inhalt))";
+////                Statement stmt = connection.createStatement();
+////                stmt.executeQuery(sql);
+//
+//                PreparedStatement ps = connection.prepareStatement("CREATE TABLE ?" + "(inhalt VARCHAR(255)" + "PRIMARY KEY (inhalt))");
+//                ps.setString(1, tablename);
+//                ps.executeQuery();
+//                connection.close();
+//            } catch (SQLException ex) {
+//                log.debug("execute of Query", ex);
+//
+//            }
+//        }
+//
+//    }
 
     @Override
     public void writeInFile(String col, String text, boolean flag) {
@@ -48,9 +48,9 @@ public class WriterJdbc implements Writer {
 
         if (connection != null) {
             try {
-                PreparedStatement ps = connection.prepareStatement("INSERT INTO App.MyTable (data)  Values(?)");
+                PreparedStatement ps = connection.prepareStatement("INSERT INTO APP.MYTABLE (DATA) VALUES (?)");
                 ps.setString(1, text);
-                ps.executeQuery();
+                ps.executeUpdate();
                 connection.close();
             } catch (SQLException ex) {
                 log.debug("execute of Query", ex);

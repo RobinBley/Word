@@ -4,19 +4,16 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.word.filereader;
-
-import java.util.ArrayList;
+package com.mycompany.word.userinput;
 
 /**
  *
  * @author rbley
  */
-public interface Reader {
+public interface Eingabe {
+    void showFile();
+    void readFile();
     
-    String readFile(String filepath);
-    
-    ArrayList<String> showFiles(String filepath);
-    
+   
     
 }

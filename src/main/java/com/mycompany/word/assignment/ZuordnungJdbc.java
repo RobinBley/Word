@@ -10,6 +10,7 @@ import com.mycompany.word.filereader.Reader;
 import com.mycompany.word.filewriter.Writer;
 import com.mycompany.word.menue.Menue;
 import com.mycompany.word.paths.Path;
+import com.mycompany.word.userinput.Eingabe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -30,10 +31,13 @@ public class ZuordnungJdbc implements Zuordnung {
     @Autowired
     @Qualifier("pathDatabase")
     private Path path;
-    @Autowired
+//    @Autowired
     private Ausgabe ausgabe;
     @Autowired
     private Menue menue;
+    @Autowired
+    @Qualifier("eingabeDatenbank")
+    private Eingabe eingabe;
 
     @Override
     public Menue getMenue() {
@@ -83,6 +87,16 @@ public class ZuordnungJdbc implements Zuordnung {
     @Override
     public void setPath(Path path) {
         this.path = path;
+    }
+
+    @Override
+    public Eingabe getEingabe() {
+        return eingabe;
+    }
+
+    @Override
+    public void setEingabe(Eingabe eingabe) {
+        this.eingabe = eingabe;
     }
 
 }
