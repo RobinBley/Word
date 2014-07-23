@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.mycompany.word.ausgabe;
 
+import com.mycompany.word.Gui;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,16 +14,13 @@ import org.springframework.stereotype.Service;
  * @author rbley
  */
 @Service
-public class ConsoleAusgabe implements Ausgabe {
+public class GuiAusgabe implements Ausgabe{
 
     @Override
-    public boolean ausgeben(final String output) {
-        try {
-            System.out.println(output);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public boolean ausgeben(String output) {
+        Gui.getInstance().addToList(output);
+        return true;
     }
-
+    
+    
 }

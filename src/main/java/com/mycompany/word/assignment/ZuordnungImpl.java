@@ -31,7 +31,8 @@ public class ZuordnungImpl implements Zuordnung {
     @Autowired
     @Qualifier("pathImpl")
     private Path path;
-//    @Autowired
+    @Autowired
+    @Qualifier("guiAusgabe")
     private Ausgabe ausgabe;
     @Autowired
     private Menue menue;

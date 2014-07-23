@@ -5,6 +5,7 @@
  */
 package com.mycompany.word.userinput;
 
+import com.mycompany.word.propertiehandling.PropertieManager;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,12 +13,12 @@ public class EingabeImpl implements Eingabe {
 
     @Override
     public void showFile() {
-        System.out.println("choose file:");
+        PropertieManager.getInstance().getZuordnung().getAusgabe().ausgeben("choose file:");
     }
 
     @Override
     public void readFile() {
-        System.out.println("\n0=read file \n1=write into file\nelse=break");
+        PropertieManager.getInstance().getZuordnung().getAusgabe().ausgeben("\n0=read file \n1=write into file\nelse=break");
 
     }
 }

@@ -6,6 +6,7 @@
 package com.mycompany.word.propertiehandling;
 
 import com.mycompany.word.assignment.Zuordnung;
+import com.mycompany.word.assignment.ZuordnungJdbc;
 import com.mycompany.word.filereader.ReaderImpl;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,9 +23,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public final class PropertieManager {
 
     private final transient static Logger LOG = Logger.getLogger(ReaderImpl.class);
-    private Properties props;
     public static PropertieManager instance = null;
-    private ClassPathXmlApplicationContext ctx;
+    private final Properties props;
+    private final ClassPathXmlApplicationContext ctx;
 
     public static PropertieManager getInstance() {
         if (instance == null) {
@@ -37,23 +38,27 @@ public final class PropertieManager {
         ctx = new ClassPathXmlApplicationContext("application-context.xml");
 
         props = new Properties();
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("app.properties");
+        final InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("app.properties");
         try {
             props.load(inputStream);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             LOG.debug("fehler beim laden der Properties", ex);
         }
+
     }
 
     public Zuordnung getZuordnung() {
         final String zdg = props.getProperty("zuordnung");
+        Zuordnung zuordnung;
         if (zdg.contains("datenbank") || zdg.contains("jdbc")) {
-            return (Zuordnung) ctx.getBean("zuordnungJdbc");
+            zuordnung = (Zuordnung) ctx.getBean("zuordnungJdbc");
 
         } else if (zdg.contains("file") || zdg.contains("impl") || zdg.contains("txt")) {
-            return (Zuordnung) ctx.getBean("zuordnungImpl");
+            zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
+        } else {
+            zuordnung = new ZuordnungJdbc();
         }
-        return null;
+        return zuordnung;
     }
 
     public Properties getPropertie() {
@@ -63,6 +68,7 @@ public final class PropertieManager {
     public void changePropertie(final String propertie, final String value) {
 
         try {
+//            Thread.currentThread().getContextClassLoader("resources/app.properties");
             final OutputStream out = new FileOutputStream("/home/rbley/NetBeansProjects/Word/src/main/resources/app.properties", false);
             props.setProperty(propertie, value);
             props.store(out, null);

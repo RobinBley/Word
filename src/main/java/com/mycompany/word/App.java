@@ -13,8 +13,8 @@ public final class App {
     }
 
     public static void main(final String[] args) {
-//        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
-        PropertieManager.getInstance().getZuordnung().getMenue().showMenue();
+        Gui.getInstance();
+//        PropertieManager.getInstance().getZuordnung().getMenue().showMenue();
         
 
     }

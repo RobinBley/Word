@@ -31,7 +31,8 @@ public class ZuordnungJdbc implements Zuordnung {
     @Autowired
     @Qualifier("pathDatabase")
     private Path path;
-//    @Autowired
+    @Autowired
+    @Qualifier("consoleAusgabe")
     private Ausgabe ausgabe;
     @Autowired
     private Menue menue;

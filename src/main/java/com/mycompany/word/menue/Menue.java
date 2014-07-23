@@ -27,13 +27,11 @@ public class Menue {
         zuordnung.getEingabe().showFile();
         if (files != null) {
             for (String file : files) {
-                System.out.println(counter + " = " + file);
+                zuordnung.getAusgabe().ausgeben(counter + " = " + file);
                 counter++;
             }
             boolean run;
-
             if (counter > 0) {
-
                 run = true;
             } else {
                 run = false;
@@ -54,14 +52,12 @@ public class Menue {
     }
 
     protected void readFile() {
-
-//        System.out.println("\n\n\ntest\n\n\n");
-        System.out.println("\n" + zuordnung.getReader().readFile(zuordnung.getPath().getFilepath()));
+        zuordnung.getAusgabe().ausgeben("\n" + zuordnung.getReader().readFile(zuordnung.getPath().getFilepath()));
     }
 
     protected void writeFrile(final Scanner scan) {
         try {
-            System.out.println("output:");
+            zuordnung.getAusgabe().ausgeben("output:");
             String output = scan.next();
             zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), output, true);
         } catch (Exception e) {
