@@ -3,46 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.word.gui;
+package com.mycompany.word.menue;
 
 import com.mycompany.word.assignment.Zuordnung;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author rbley
  */
-public class Gui extends JFrame {
+@Service
+public class Gui extends JFrame implements MenueInterface {
 
     private final DefaultListModel listModel = new DefaultListModel();
-    private final JPanel panel;
-    private final JLabel label;
-    private final JButton button;
+    private JPanel panel;
+    private JLabel label;
+    private JButton button;
     private JTextField textfield;
-    private final JList list;
-    public static Gui instance;
+    private JList list;
     public Zuordnung zuordnung;
 
-    public static Gui getInstance() {
-        if (instance == null) {
-            instance = new Gui();
-        }
-        return instance;
+    public Gui() {
+
     }
 
-    public Gui() {
-        super("Oberflaeche");
+    public void createWindow() {
+        setVisible(true);
+//        setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width / 4, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+        ///////////////////
         zuordnung = PropertieManager.getInstance().getZuordnung();
-        setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width / 4, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel(new FlowLayout());
         panel.setBackground(Color.white);
@@ -57,8 +54,7 @@ public class Gui extends JFrame {
         button = new JButton();
         button.setText("Hinzufuegen");
         panel.add(button);
-        getContentPane().add(panel);
-
+        button.setBackground(Color.white);
         textfield.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -68,12 +64,17 @@ public class Gui extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showMenue();
+                zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), textfield.getText(), true);
+                refreshList();
             }
         });
+        /////////////////////
+        setTitle("Oberflaeche");
+        getContentPane().add(panel);
         refreshList();
         pack();
-        setVisible(true);
+        setLocationRelativeTo(null);
+
     }
 
     public void addToList(String text) {
@@ -90,12 +91,14 @@ public class Gui extends JFrame {
         for (String row : split) {
             listModel.addElement(row);
         }
+        pack();
     }
 
+    @Override
     public void showMenue() {
-        zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), textfield.getText() + System.getProperty("line.separator"), true);
-        refreshList();
-        pack();
+        createWindow();
+//        refreshList();
+        setVisible(true);
     }
 
 }

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author rbley
  */
 @Service
-public class Menue {
+public class Menue implements MenueInterface{
 
     private Zuordnung zuordnung;
 
@@ -65,6 +65,7 @@ public class Menue {
         }
     }
 
+    @Override
     public void showMenue() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
         boolean run = true;

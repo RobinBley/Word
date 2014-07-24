@@ -6,8 +6,10 @@
 package com.mycompany.word.propertiehandling;
 
 import com.mycompany.word.assignment.Zuordnung;
-import com.mycompany.word.assignment.ZuordnungJdbc;
+import com.mycompany.word.assignment.ZuordnungImpl;
 import com.mycompany.word.filereader.ReaderImpl;
+import com.mycompany.word.menue.Gui;
+import com.mycompany.word.menue.Menue;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,17 +50,36 @@ public final class PropertieManager {
     }
 
     public Zuordnung getZuordnung() {
-        final String zdg = props.getProperty("zuordnung");
-        Zuordnung zuordnung;
-        if (zdg.contains("datenbank") || zdg.contains("jdbc")) {
-            zuordnung = (Zuordnung) ctx.getBean("zuordnungJdbc");
+        try {
+            final String zdg = props.getProperty("zuordnung");
+            Zuordnung zuordnung;
+            if (zdg.contains("bank") || zdg.contains("jdbc")) {
+                zuordnung = (Zuordnung) ctx.getBean("zuordnungJdbc");
 
-        } else if (zdg.contains("file") || zdg.contains("impl") || zdg.contains("txt")) {
-            zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
-        } else {
-            zuordnung = new ZuordnungJdbc();
+            } else if (zdg.contains("file") || zdg.contains("impl") || zdg.contains("txt")) {
+                zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
+            } else {
+                zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
+            }
+            try {
+
+                final String menuename = props.getProperty("menue");
+
+                if (menuename.contains("gui") || menuename.contains("gra")) {
+                    zuordnung.setMenue(ctx.getBean(Gui.class));
+                } else if (menuename.contains("con") || menuename.contains("men")) {
+                    zuordnung.setMenue(ctx.getBean(Menue.class));
+                }
+
+                return zuordnung;
+            } catch (Exception e) {
+                LOG.debug("falsche menue propertie (menue)" + e);
+                return zuordnung;
+            }
+        } catch (Exception e) {
+            LOG.debug("falsche menue propertie (zuordnung)" + e);
+            return new ZuordnungImpl();
         }
-        return zuordnung;
     }
 
     public Properties getPropertie() {

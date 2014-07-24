@@ -1,6 +1,6 @@
 package com.mycompany.word;
 
-import com.mycompany.word.gui.Gui;
+import com.mycompany.word.menue.Gui;
 
 /**
  *
@@ -13,10 +13,13 @@ public final class App {
     }
 
     public static void main(final String[] args) {
-        Gui.getInstance();
+        Gui gui = new Gui();
+        gui.createWindow();
+        gui.showMenue();
+        
 //        PropertieManager.getInstance().getZuordnung().getMenue().showMenue();
         
-
+        
     }
 
 }

@@ -8,7 +8,7 @@ package com.mycompany.word.assignment;
 import com.mycompany.word.ausgabe.Ausgabe;
 import com.mycompany.word.filereader.Reader;
 import com.mycompany.word.filewriter.Writer;
-import com.mycompany.word.menue.Menue;
+import com.mycompany.word.menue.MenueInterface;
 import com.mycompany.word.paths.Path;
 import com.mycompany.word.userinput.Eingabe;
 
@@ -18,9 +18,9 @@ import com.mycompany.word.userinput.Eingabe;
  */
 public interface Zuordnung {
 
-    Menue getMenue();
+    MenueInterface getMenue();
 
-    void setMenue(Menue menue);
+    void setMenue(MenueInterface menue);
 
     Ausgabe getAusgabe();
 

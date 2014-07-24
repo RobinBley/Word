@@ -8,7 +8,7 @@ package com.mycompany.word.assignment;
 import com.mycompany.word.ausgabe.Ausgabe;
 import com.mycompany.word.filereader.Reader;
 import com.mycompany.word.filewriter.Writer;
-import com.mycompany.word.menue.Menue;
+import com.mycompany.word.menue.MenueInterface;
 import com.mycompany.word.paths.Path;
 import com.mycompany.word.userinput.Eingabe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,21 +32,22 @@ public class ZuordnungImpl implements Zuordnung {
     @Qualifier("pathImpl")
     private Path path;
     @Autowired
-    @Qualifier("guiAusgabe")
+//    @Qualifier("guiAusgabe")
     private Ausgabe ausgabe;
     @Autowired
-    private Menue menue;
+    @Qualifier("menue")
+    private MenueInterface menue;
     @Autowired
     @Qualifier("eingabeImpl")
     private Eingabe eingabe;
 
     @Override
-    public Menue getMenue() {
+    public MenueInterface getMenue() {
         return menue;
     }
 
     @Override
-    public void setMenue(Menue menue) {
+    public void setMenue(MenueInterface menue) {
         this.menue = menue;
     }
 

@@ -45,7 +45,6 @@ public class ReaderJdbc implements Reader {
                         buffer.append(result.getString(1)).append("\n");
                     } else {
                         run = false;
-                        log.debug("no result");
                     }
                 }
                 connection.close();
