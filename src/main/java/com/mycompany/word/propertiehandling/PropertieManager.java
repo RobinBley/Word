@@ -6,7 +6,6 @@
 package com.mycompany.word.propertiehandling;
 
 import com.mycompany.word.assignment.Zuordnung;
-import com.mycompany.word.assignment.ZuordnungImpl;
 import com.mycompany.word.filereader.ReaderImpl;
 import com.mycompany.word.menue.Gui;
 import com.mycompany.word.menue.Menue;
@@ -16,6 +15,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeansException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -50,9 +50,9 @@ public final class PropertieManager {
     }
 
     public Zuordnung getZuordnung() {
+        Zuordnung zuordnung;
         try {
             final String zdg = props.getProperty("zuordnung");
-            Zuordnung zuordnung;
             if (zdg.contains("bank") || zdg.contains("jdbc")) {
                 zuordnung = (Zuordnung) ctx.getBean("zuordnungJdbc");
 
@@ -72,14 +72,14 @@ public final class PropertieManager {
                 }
 
                 return zuordnung;
-            } catch (Exception e) {
+            } catch (BeansException e) {
                 LOG.debug("falsche menue propertie (menue)" + e);
-                return zuordnung;
             }
-        } catch (Exception e) {
+        } catch (BeansException e) {
             LOG.debug("falsche menue propertie (zuordnung)" + e);
-            return new ZuordnungImpl();
+            zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
         }
+        return zuordnung;
     }
 
     public Properties getPropertie() {

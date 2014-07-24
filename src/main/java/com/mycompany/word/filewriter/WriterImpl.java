@@ -13,17 +13,22 @@ import org.springframework.stereotype.Service;
 public class WriterImpl implements Writer {
 
     @Override
-    public void writeInFile(String filepath, String text, boolean flag) {
+    public void writeInFile(String filepath, String text , boolean flag) {
         filepath = "/" + filepath;
 
         try {
             final FileWriter writer = new FileWriter(filepath, flag);
-            writer.write(text);
+            writer.write(text + System.getProperty("line.separator"));
             writer.close();
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void removeValue(String filepath, String text) {
+        
     }
 
  

@@ -1,6 +1,6 @@
 package com.mycompany.word;
 
-import com.mycompany.word.menue.Gui;
+import com.mycompany.word.propertiehandling.PropertieManager;
 
 /**
  *
@@ -13,11 +13,8 @@ public final class App {
     }
 
     public static void main(final String[] args) {
-        Gui gui = new Gui();
-        gui.createWindow();
-        gui.showMenue();
+        PropertieManager.getInstance().getZuordnung().getMenue().showMenue();
         
-//        PropertieManager.getInstance().getZuordnung().getMenue().showMenue();
         
         
     }

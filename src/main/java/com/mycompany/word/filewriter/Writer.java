@@ -14,6 +14,8 @@ public interface Writer {
     
 
     void writeInFile(String filepath, String text, boolean flag);
+    
+    void removeValue(String filepath, String text);
 
 
     

@@ -53,9 +53,28 @@ public class WriterJdbc implements Writer {
                 ps.executeUpdate();
                 connection.close();
             } catch (SQLException ex) {
-                log.debug("execute of Query", ex);
+                log.debug("execute of Query (write in file)", ex);
             }
         }
+    }
+
+    @Override
+    public void removeValue(String filepath, String text) {
+        
+        Connection connection = JdbcConnection.getInstance().connect();
+
+        if (connection != null) {
+            try {
+                PreparedStatement ps = connection.prepareStatement("DELETE FROM MYTABLE WHERE DATA = ?");
+                ps.setString(1, text);
+                ps.executeUpdate();
+                connection.close();
+            } catch (SQLException ex) {
+                log.debug("execute of Query (remove value)", ex);
+            }
+        }
+        
+        
     }
 
 }
