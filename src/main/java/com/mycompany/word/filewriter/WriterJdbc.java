@@ -65,9 +65,9 @@ public class WriterJdbc implements Writer {
 
         if (connection != null) {
             try {
-                PreparedStatement ps = connection.prepareStatement("DELETE FROM MYTABLE WHERE DATA = ?");
+                PreparedStatement ps = connection.prepareStatement("DELETE FROM MYTABLE WHERE DATA=?");
                 ps.setString(1, text);
-                ps.executeUpdate();
+                ps.executeQuery();
                 connection.close();
             } catch (SQLException ex) {
                 log.debug("execute of Query (remove value)", ex);

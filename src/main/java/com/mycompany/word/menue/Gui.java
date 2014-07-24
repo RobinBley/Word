@@ -6,7 +6,6 @@
 package com.mycompany.word.menue;
 
 import com.mycompany.word.assignment.Zuordnung;
-import com.mycompany.word.popup.PopMenu;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -16,8 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,16 +25,16 @@ import org.springframework.stereotype.Service;
 public class Gui extends JFrame implements MenueInterface {
 
     private final DefaultListModel listModel = new DefaultListModel();
-    private JPanel panel;
+    private final JPanel panel;
     private JLabel label;
-    private JButton button;
-    private JTextField textfield;
-    private JList list;
+    private final JButton button;
+    private final JTextField textfield;
+    private final JList list;
     private Zuordnung zuordnung;
-    private JPopupMenu pop;
+    private final JPopupMenu pop;
 
     public Gui() {
-        pop = new PopMenu();
+        pop = new JPopupMenu();
 //        setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width / 4, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel(new FlowLayout());
@@ -55,7 +52,7 @@ public class Gui extends JFrame implements MenueInterface {
         button = new JButton();
         button.setText("Hinzufuegen");
         panel.add(button);
-        button.setBackground(Color.white);
+//        button.setBackground(Color.white);
         addListener();
     }
 
@@ -98,9 +95,21 @@ public class Gui extends JFrame implements MenueInterface {
     }
 
     public void addListener() {
+        JButton popButton = new JButton();
+        popButton.setText("remove");
+        popButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                zuordnung.getWriter().removeValue(zuordnung.getPath().getFilepath(), (String) listModel.get(list.getSelectedIndex()));
+                System.out.println((String) listModel.get(list.getSelectedIndex()));
+            }
+        });
+        pop.add(popButton);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), textfield.getText(), true);
                 if (textfield.getText() == "") {
                 }
@@ -118,9 +127,6 @@ public class Gui extends JFrame implements MenueInterface {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(list.getSelectedIndex());
-                System.out.println(listModel.get(list.getSelectedIndex()));
-                zuordnung.getWriter().removeValue(null, (String)listModel.get(list.getSelectedIndex()));
                 popMenu();
             }
         });

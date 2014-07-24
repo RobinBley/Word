@@ -6,8 +6,10 @@
 
 package com.mycompany.word.popup;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import com.mycompany.word.filewriter.Writer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JPopupMenu;
 
 /**
@@ -16,14 +18,40 @@ import javax.swing.JPopupMenu;
  */
 public class PopMenu extends JPopupMenu {
     
+    private String value;
+    private Writer writer;
+
+    public Writer getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Writer writer) {
+        this.writer = writer;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+    
+    
     public PopMenu() {
-        add("PopMenu");
-        addMouseListener(new MouseAdapter() {
+        JButton button = new JButton("remove");
+        button.addActionListener(new ActionListener() {
+
             @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("test");
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(e.toString());
+                System.out.println(value);
+                writer.removeValue(null, value);
+                
             }
         });
+        
+        add(button);
         
     }
     
