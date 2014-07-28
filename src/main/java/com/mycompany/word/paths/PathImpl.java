@@ -17,7 +17,7 @@ public class PathImpl implements Path {
 
     @Override
     public String getFilepath() {
-        return filedirectory + filename;
+        return filedirectory + "/" + filename;
     }
     @Override
     public String getFilename() {

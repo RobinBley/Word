@@ -21,7 +21,6 @@ public class WriterImpl implements Writer {
     
     @Override
     public void writeInFile(String filepath, final String text, final boolean flag) {
-        filepath = "/" + filepath;
 
         try {
             final FileWriter writer = new FileWriter(filepath, flag);

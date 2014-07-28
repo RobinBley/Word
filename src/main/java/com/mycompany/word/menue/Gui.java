@@ -89,7 +89,7 @@ public class Gui extends JFrame implements MenueInterface {
     
 
     private void addListener() {
-        JButton popButton = new JButton();
+        final JButton popButton = new JButton();
         popButton.setText("remove");
         popButton.addActionListener(new ActionListener() {
 
@@ -120,12 +120,6 @@ public class Gui extends JFrame implements MenueInterface {
             @Override
             public void mouseClicked(MouseEvent e) {
                 pop.show(e.getComponent(), e.getX(), e.getY());
-            }
-        });
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-//                pop.setVisible(false);
             }
         });
     }
