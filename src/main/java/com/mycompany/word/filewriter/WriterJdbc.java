@@ -60,19 +60,11 @@ public class WriterJdbc implements Writer {
 
     @Override
     public void removeValue(final String filepath, final String text, final int row) {
-        
+
         Connection connection = JdbcConnection.getInstance().connect();
 
         if (connection != null) {
             try {
-                
-//                String sql = "DELETE FROM APP.MYTABLE WHERE DATA = " + text;
-//                DELETE FROM APP.MYTABLE WHERE "DATA" = 'txext';
-
-//                PreparedStatement ps = connection.prepareStatement(sql);
-                
-                
-                
                 PreparedStatement ps = connection.prepareStatement("DELETE FROM APP.MYTABLE WHERE CAST(DATA AS VARCHAR(128)) = ?");
                 ps.setString(1, text);
                 ps.executeUpdate();
@@ -81,8 +73,7 @@ public class WriterJdbc implements Writer {
                 log.debug("execute of Query (remove value)", ex);
             }
         }
-        
-        
+
     }
 
 }

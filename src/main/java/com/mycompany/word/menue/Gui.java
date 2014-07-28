@@ -9,7 +9,6 @@ import com.mycompany.word.assignment.Zuordnung;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -26,35 +25,42 @@ public class Gui extends JFrame implements MenueInterface {
 
     private final DefaultListModel listModel = new DefaultListModel();
     private final JPanel panel;
-    private JLabel label;
     private final JButton button;
     private final JTextField textfield;
     private final JList list;
     private Zuordnung zuordnung;
     private final JPopupMenu pop;
+//    private JMenuBar menubar;
 
     public Gui() {
         pop = new JPopupMenu();
-//        setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width / 4, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel(new FlowLayout());
         panel.setBackground(Color.white);
-//        label = new JLabel();
-//        label.setText("Eingabe:");
-//        panel.add(label);
         textfield = new JTextField(8);
         textfield.setText("Hier eingeben");
         panel.add(textfield);
         list = new JList(listModel);
-
         panel.add(list);
-
         button = new JButton();
         button.setText("Hinzufuegen");
         panel.add(button);
-//        button.setBackground(Color.white);
         addListener();
+        
+        /////////////////
+//        menubar = new JMenuBar();
+//        addMenuefields();
+        /////////////////
     }
+    /////////////////////////////////////////////////
+//    private void addMenuefields(){
+//        for(String field : PropertieManager.getInstance().getMenufields()){
+//            System.out.println(field);
+//            menubar.add(new JMenu("dddddddd"));
+//            panel.add(menubar, FlowLayout.LEFT);
+//        }
+//    }
+    /////////////////////////////////////////////////
 
     public void createWindow() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
@@ -63,19 +69,6 @@ public class Gui extends JFrame implements MenueInterface {
         pack();
         setLocationRelativeTo(null);
 
-    }
-
-    public void addToList(String text) {
-        listModel.addElement(text);
-    }
-
-    public void setLabelText(String text) {
-        label.setText(text);
-    }
-
-    void popMenu() {
-        pop.setLocation(MouseInfo.getPointerInfo().getLocation());
-        pop.setVisible(true);
     }
 
     public void refreshList() {
@@ -93,8 +86,9 @@ public class Gui extends JFrame implements MenueInterface {
         refreshList();
         setVisible(true);
     }
+    
 
-    public void addListener() {
+    private void addListener() {
         JButton popButton = new JButton();
         popButton.setText("remove");
         popButton.addActionListener(new ActionListener() {
@@ -102,48 +96,37 @@ public class Gui extends JFrame implements MenueInterface {
             @Override
             public void actionPerformed(ActionEvent e) {
                 zuordnung.getWriter().removeValue(zuordnung.getPath().getFilepath(), (String) listModel.get(list.getSelectedIndex()), list.getSelectedIndex());
-                System.out.println((String) listModel.get(list.getSelectedIndex()));
                 refreshList();
+                pop.setVisible(false);
             }
         });
         pop.add(popButton);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
                 zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), textfield.getText(), true);
-                if (textfield.getText() == "") {
-                }
                 refreshList();
-                pop.setVisible(false);
+//                pop.setVisible(false);
             }
         });
         textfield.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 textfield.setText("");
-                pop.setVisible(false);
+//                pop.setVisible(false);
             }
         });
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                popMenu();
+                pop.show(e.getComponent(), e.getX(), e.getY());
             }
         });
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                pop.setVisible(false);
+//                pop.setVisible(false);
             }
         });
-//        list.addListSelectionListener(new ListSelectionListener() {
-//
-//            @Override
-//            public void valueChanged(ListSelectionEvent e) {
-//                System.out.println(e.getFirstIndex());
-//
-//            }
-//        });
     }
 }

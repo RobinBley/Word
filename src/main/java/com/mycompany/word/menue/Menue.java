@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author rbley
  */
 @Service
-public class Menue implements MenueInterface{
+public class Menue implements MenueInterface {
 
     private Zuordnung zuordnung;
 
@@ -70,9 +70,8 @@ public class Menue implements MenueInterface{
         zuordnung = PropertieManager.getInstance().getZuordnung();
         boolean run = true;
 
+        final Scanner scan = new Scanner(System.in);
         while (run) {
-
-            final Scanner scan = new Scanner(System.in);
 
             try {
                 showFiles(scan);
