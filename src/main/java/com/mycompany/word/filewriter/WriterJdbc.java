@@ -42,7 +42,7 @@ public class WriterJdbc implements Writer {
 //    }
 
     @Override
-    public void writeInFile(String col, String text, boolean flag) {
+    public void writeInFile(final String col, final String text, final boolean flag) {
 
         Connection connection = JdbcConnection.getInstance().connect();
 
@@ -59,15 +59,23 @@ public class WriterJdbc implements Writer {
     }
 
     @Override
-    public void removeValue(String filepath, String text) {
+    public void removeValue(final String filepath, final String text, final int row) {
         
         Connection connection = JdbcConnection.getInstance().connect();
 
         if (connection != null) {
             try {
-                PreparedStatement ps = connection.prepareStatement("DELETE FROM MYTABLE WHERE DATA=?");
+                
+//                String sql = "DELETE FROM APP.MYTABLE WHERE DATA = " + text;
+//                DELETE FROM APP.MYTABLE WHERE "DATA" = 'txext';
+
+//                PreparedStatement ps = connection.prepareStatement(sql);
+                
+                
+                
+                PreparedStatement ps = connection.prepareStatement("DELETE FROM APP.MYTABLE WHERE CAST(DATA AS VARCHAR(128)) = ?");
                 ps.setString(1, text);
-                ps.executeQuery();
+                ps.executeUpdate();
                 connection.close();
             } catch (SQLException ex) {
                 log.debug("execute of Query (remove value)", ex);

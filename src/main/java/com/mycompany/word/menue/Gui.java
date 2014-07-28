@@ -101,8 +101,9 @@ public class Gui extends JFrame implements MenueInterface {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                zuordnung.getWriter().removeValue(zuordnung.getPath().getFilepath(), (String) listModel.get(list.getSelectedIndex()));
+                zuordnung.getWriter().removeValue(zuordnung.getPath().getFilepath(), (String) listModel.get(list.getSelectedIndex()), list.getSelectedIndex());
                 System.out.println((String) listModel.get(list.getSelectedIndex()));
+                refreshList();
             }
         });
         pop.add(popButton);

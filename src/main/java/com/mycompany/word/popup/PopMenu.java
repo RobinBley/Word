@@ -46,7 +46,7 @@ public class PopMenu extends JPopupMenu {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(e.toString());
                 System.out.println(value);
-                writer.removeValue(null, value);
+//                writer.removeValue(null, value, );
                 
             }
         });
