@@ -7,6 +7,9 @@ package com.mycompany.word.menue;
 
 import com.mycompany.word.assignment.Zuordnung;
 import com.mycompany.word.propertiehandling.PropertieManager;
+import components.MenuBarPanel;
+import components.MenuPanel;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -30,11 +33,28 @@ public class Gui extends JFrame implements MenueInterface {
     private final JList list;
     private Zuordnung zuordnung;
     private final JPopupMenu pop;
-//    private JMenuBar menubar;
+//    @Autowired
+//    @Qualifier("MenuBarPanel")
+    private MenuPanel menuPanel;
+
+    
+    private static Gui instance = null;
+
+    public static Gui getInstance() {
+        if (instance == null) {
+            instance = new Gui();
+        }
+        return instance;
+    }
 
     public Gui() {
+        instance = this;
+        
+        menuPanel = new MenuBarPanel();
+        
         pop = new JPopupMenu();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
         panel = new JPanel(new FlowLayout());
         panel.setBackground(Color.white);
         textfield = new JTextField(8);
@@ -46,26 +66,13 @@ public class Gui extends JFrame implements MenueInterface {
         button.setText("Hinzufuegen");
         panel.add(button);
         addListener();
-        
-        /////////////////
-//        menubar = new JMenuBar();
-//        addMenuefields();
-        /////////////////
     }
-    /////////////////////////////////////////////////
-//    private void addMenuefields(){
-//        for(String field : PropertieManager.getInstance().getMenufields()){
-//            System.out.println(field);
-//            menubar.add(new JMenu("dddddddd"));
-//            panel.add(menubar, FlowLayout.LEFT);
-//        }
-//    }
-    /////////////////////////////////////////////////
 
     public void createWindow() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
         setTitle("Oberflaeche");
-        getContentPane().add(panel);
+        getContentPane().add(panel, BorderLayout.SOUTH);
+        add(menuPanel.getMenuPanel(), BorderLayout.NORTH);
         pack();
         setLocationRelativeTo(null);
 
@@ -106,14 +113,12 @@ public class Gui extends JFrame implements MenueInterface {
             public void actionPerformed(ActionEvent e) {
                 zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), textfield.getText(), true);
                 refreshList();
-//                pop.setVisible(false);
             }
         });
         textfield.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 textfield.setText("");
-//                pop.setVisible(false);
             }
         });
         list.addMouseListener(new MouseAdapter() {
