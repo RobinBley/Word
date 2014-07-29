@@ -8,12 +8,16 @@ package components;
 import com.mycompany.word.menue.Gui;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import java.awt.BorderLayout;
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.Timer;
 
 /**
  *
@@ -82,8 +86,12 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
     @Override
     public void actionPerformed(ActionEvent object) {
         if (object.getSource() == info) {
-            System.out.println("info wurde angeklickt");
-
+//            JPopupMenu pop = new JPopupMenu();
+//            pop.add(new JLabel("Datenbank, kann kein file auswaehlen"));
+//            pop.setLocation(MouseInfo.getPointerInfo().getLocation());
+//            pop.setVisible(true);
+//            pop.setVisible(false);
+            
         } else if (object.getSource() == file) {
             PropertieManager.getInstance().changePropertie("zuordnung", "file");
             Gui.getInstance().showMenue();
@@ -92,7 +100,7 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
             Gui.getInstance().showMenue();
 
         } else if (object.getSource() == menu) {
-            new MyFileBrowser().showFiles();
+            MyFileBrowser.getInstance().showFiles();
         }
 
     }

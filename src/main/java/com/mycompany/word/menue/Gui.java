@@ -80,7 +80,7 @@ public class Gui extends JFrame implements MenueInterface {
 
     public void refreshList() {
         listModel.removeAllElements();
-        String[] split = zuordnung.getReader().readFile(zuordnung.getPath().getFilepath()).split(System.getProperty("line.separator"));
+        String[] split = PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()).split(System.getProperty("line.separator"));
         for (String row : split) {
             listModel.addElement(row);
         }
