@@ -79,7 +79,24 @@ public class WriterJdbc implements Writer {
     @Override
     public void overwriteFile(String filepath, String text) {
         //Falsche implementation!!!
+        Connection connection = JdbcConnection.getInstance().connect();
         writeInFile(filepath, text, true);
+
+        if (connection != null) {
+            try {
+                PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE APP.MYTABLE");
+                ps.executeUpdate();
+                ps = connection.prepareStatement("INSERT INTO APP.MYTABLE (DATA) VALUES (?)");
+                ps.setString(1, text);
+                ps.executeUpdate();
+                
+                connection.close();
+            } catch (SQLException ex) {
+                log.debug("execute of Query (remove value)", ex);
+            }
+        }
+        
+        
     }
 
 }

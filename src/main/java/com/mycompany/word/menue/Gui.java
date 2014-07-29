@@ -14,8 +14,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 import org.springframework.stereotype.Service;
 
@@ -26,18 +26,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class Gui extends JFrame implements MenueInterface {
 
-    private final DefaultListModel listModel = new DefaultListModel();
     private final JPanel panel;
     private final JButton button;
-    private final JTextField textfield;
-    private final JList list;
+//    private final JTextField textfield;
     private Zuordnung zuordnung;
-    private final JPopupMenu pop;
 //    @Autowired
 //    @Qualifier("MenuBarPanel")
     private MenuPanel menuPanel;
+    private JTextArea textfield;
 
-    
     private static Gui instance = null;
 
     public static Gui getInstance() {
@@ -49,41 +46,35 @@ public class Gui extends JFrame implements MenueInterface {
 
     public Gui() {
         instance = this;
-        
+
         menuPanel = new MenuBarPanel();
-        
-        pop = new JPopupMenu();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        panel = new JPanel(new FlowLayout());
-        panel.setBackground(Color.white);
-        textfield = new JTextField(8);
-        textfield.setText("Hier eingeben");
+        panel = new JPanel(new BorderLayout());
+        panel.setBackground(Color.LIGHT_GRAY);
+
+        textfield = new JTextArea();
         panel.add(textfield);
-        list = new JList(listModel);
-        panel.add(list);
         button = new JButton();
-        button.setText("Hinzufuegen");
-        panel.add(button);
+        button.setText("Save");
+//        panel.add(button, BorderLayout.SOUTH);
         addListener();
     }
 
     public void createWindow() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
         setTitle("Oberflaeche");
-        getContentPane().add(panel, BorderLayout.SOUTH);
         add(menuPanel.getMenuPanel(), BorderLayout.NORTH);
+        getContentPane().add(panel, BorderLayout.SOUTH);
         pack();
         setLocationRelativeTo(null);
 
     }
 
     public void refreshList() {
-        listModel.removeAllElements();
-        String[] split = PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()).split(System.getProperty("line.separator"));
-        for (String row : split) {
-            listModel.addElement(row);
-        }
+        textfield.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()));
+
         pack();
     }
 
@@ -93,39 +84,35 @@ public class Gui extends JFrame implements MenueInterface {
         refreshList();
         setVisible(true);
     }
-    
 
     private void addListener() {
-        final JButton popButton = new JButton();
-        popButton.setText("remove");
-        popButton.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                zuordnung.getWriter().removeValue(zuordnung.getPath().getFilepath(), (String) listModel.get(list.getSelectedIndex()), list.getSelectedIndex());
-                refreshList();
-                pop.setVisible(false);
-            }
-        });
-        pop.add(popButton);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), textfield.getText(), true);
+                zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());
                 refreshList();
             }
         });
-        textfield.addMouseListener(new MouseAdapter() {
+
+        textfield.addKeyListener(new KeyListener() {
+
             @Override
-            public void mouseClicked(MouseEvent e) {
-                textfield.setText("");
+            public void keyTyped(KeyEvent e) {
+                pack();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                pack();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());
+                pack();
             }
         });
-        list.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                pop.show(e.getComponent(), e.getX(), e.getY());
-            }
-        });
+
     }
 }
