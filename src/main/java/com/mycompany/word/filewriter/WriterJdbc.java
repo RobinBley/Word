@@ -76,4 +76,10 @@ public class WriterJdbc implements Writer {
 
     }
 
+    @Override
+    public void overwriteFile(String filepath, String text) {
+        //Falsche implementation!!!
+        writeInFile(filepath, text, true);
+    }
+
 }

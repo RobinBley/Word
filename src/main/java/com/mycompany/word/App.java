@@ -1,6 +1,7 @@
 package com.mycompany.word;
 
 import com.mycompany.word.propertiehandling.PropertieManager;
+import components.NewJFrame;
 
 /**
  *
@@ -14,7 +15,6 @@ public final class App {
 
     public static void main(final String[] args) {
         PropertieManager.getInstance().getZuordnung().getMenue().showMenue();
-        
     }
 
 }

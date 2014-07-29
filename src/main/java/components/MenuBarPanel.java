@@ -17,7 +17,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.Timer;
 
 /**
  *
@@ -54,7 +53,7 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
         help.add(info);
 
         //Submenue
-        submenu = new JMenu("data");
+        submenu = new JMenu("data from..");
         options.add(submenu);
 
         //SubmenueItems
@@ -86,15 +85,14 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
     @Override
     public void actionPerformed(ActionEvent object) {
         if (object.getSource() == info) {
-//            JPopupMenu pop = new JPopupMenu();
-//            pop.add(new JLabel("Datenbank, kann kein file auswaehlen"));
-//            pop.setLocation(MouseInfo.getPointerInfo().getLocation());
-//            pop.setVisible(true);
-//            pop.setVisible(false);
-            
+            JPopupMenu pop = new JPopupMenu();
+            pop.add(new JLabel("Datenbank, kann kein file auswaehlen"));
+            pop.show(menuPanel, 0, 0);
+
         } else if (object.getSource() == file) {
             PropertieManager.getInstance().changePropertie("zuordnung", "file");
             Gui.getInstance().showMenue();
+            
         } else if (object.getSource() == database) {
             PropertieManager.getInstance().changePropertie("zuordnung", "datenbank");
             Gui.getInstance().showMenue();
