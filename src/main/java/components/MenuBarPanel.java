@@ -77,9 +77,9 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
     }
 
     @Override
-    public JPanel getMenuPanel() {
+    public JMenuBar getMenuBar() {
 
-        return menuPanel;
+        return menubar;
     }
 
     @Override

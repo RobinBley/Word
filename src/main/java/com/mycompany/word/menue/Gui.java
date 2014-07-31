@@ -11,7 +11,6 @@ import components.MenuBarPanel;
 import components.MenuPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -65,9 +64,8 @@ public class Gui extends JFrame implements MenueInterface {
     public void createWindow() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
         setTitle("Oberflaeche");
-        add(menuPanel.getMenuPanel(), BorderLayout.NORTH);
-        getContentPane().add(panel, BorderLayout.SOUTH);
-        pack();
+        setJMenuBar(menuPanel.getMenuBar());
+        getContentPane().add(panel);
         setLocationRelativeTo(null);
 
     }
@@ -75,7 +73,6 @@ public class Gui extends JFrame implements MenueInterface {
     public void refreshList() {
         textfield.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()));
 
-        pack();
     }
 
     @Override
@@ -99,18 +96,17 @@ public class Gui extends JFrame implements MenueInterface {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                pack();
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                pack();
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());
-                pack();
+                if (e.getKeyCode() == 10) {
+                    zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());
+                }
             }
         });
 

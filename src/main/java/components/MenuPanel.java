@@ -6,6 +6,7 @@
 
 package components;
 
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 /**
@@ -14,6 +15,6 @@ import javax.swing.JPanel;
  */
 public interface MenuPanel {
     
-    JPanel getMenuPanel();
+    JMenuBar getMenuBar();
     
 }

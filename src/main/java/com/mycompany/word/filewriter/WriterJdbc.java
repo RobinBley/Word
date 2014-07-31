@@ -20,26 +20,6 @@ import org.springframework.stereotype.Service;
 public class WriterJdbc implements Writer {
 
     private final static transient Logger log = Logger.getLogger(WriterJdbc.class);
-//
-//    public void createTable(String tablename) {
-//        Connection connection = JdbcConnection.getInstance().connect();
-//        if (connection != null) {
-//            try {
-////                String sql = "CREATE TABLE TextDatein" + "(inhalt VARCHAR(255)" + "PRIMARY KEY (inhalt))";
-////                Statement stmt = connection.createStatement();
-////                stmt.executeQuery(sql);
-//
-//                PreparedStatement ps = connection.prepareStatement("CREATE TABLE ?" + "(inhalt VARCHAR(255)" + "PRIMARY KEY (inhalt))");
-//                ps.setString(1, tablename);
-//                ps.executeQuery();
-//                connection.close();
-//            } catch (SQLException ex) {
-//                log.debug("execute of Query", ex);
-//
-//            }
-//        }
-//
-//    }
 
     @Override
     public void writeInFile(final String col, final String text, final boolean flag) {
@@ -86,17 +66,19 @@ public class WriterJdbc implements Writer {
             try {
                 PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE APP.MYTABLE");
                 ps.executeUpdate();
-                ps = connection.prepareStatement("INSERT INTO APP.MYTABLE (DATA) VALUES (?)");
-                ps.setString(1, text);
-                ps.executeUpdate();
-                
+                for (String line : text.split(System.getProperty("line.separator"))) {
+                    ps = connection.prepareStatement("INSERT INTO APP.MYTABLE (DATA) VALUES (?)");
+                    ps.setString(1, line);
+                    ps.executeUpdate();
+
+                }
+
                 connection.close();
             } catch (SQLException ex) {
                 log.debug("execute of Query (remove value)", ex);
             }
         }
-        
-        
+
     }
 
 }

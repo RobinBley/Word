@@ -6,6 +6,13 @@
 package components;
 
 import com.mycompany.word.propertiehandling.PropertieManager;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,9 +23,30 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    String path;
+
     public NewJFrame() {
+        path = new String();
         initComponents();
-        jTextArea1.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(PropertieManager.getInstance().getZuordnung().getPath().getFilepath()));
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                if (!jEditorPane1.getText().equals("")) {
+
+                    if (!jEditorPane1.getText().equals(PropertieManager.getInstance().getZuordnung().getReader().readFile(path))) {
+                        int confirmed = JOptionPane.showConfirmDialog(null,
+                                "Speichern der Daten?", "Beenden",
+                                JOptionPane.YES_NO_OPTION);
+
+                        if (confirmed == JOptionPane.YES_OPTION) {
+                            saveData();
+
+                            dispose();
+                        }
+                    }
+                }
+            }
+        });
+        read();
 
     }
 
@@ -31,55 +59,64 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
-        jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        fileChooser = new javax.swing.JFileChooser();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
+        fileItemOpen = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton1.setText("Textdatei");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton2.setText("Datenbank");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Choose file");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane2.setViewportView(jEditorPane1);
 
         jMenu3.setText("File");
+
+        fileItemOpen.setText("Open");
+        fileItemOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileItemOpenActionPerformed(evt);
+            }
+        });
+        jMenu3.add(fileItemOpen);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Save");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar2.add(jMenu3);
 
         jMenu4.setText("Edit");
+
+        buttonGroup1.add(jRadioButtonMenuItem1);
+        jRadioButtonMenuItem1.setText("Datenbank");
+        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jRadioButtonMenuItem1);
+
+        buttonGroup1.add(jRadioButtonMenuItem2);
+        jRadioButtonMenuItem2.setSelected(true);
+        jRadioButtonMenuItem2.setText("Textdatei");
+        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jRadioButtonMenuItem2);
+
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
@@ -88,58 +125,74 @@ public class NewJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButton1)
-                                .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addContainerGap()))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addContainerGap())))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(6, 6, 6))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PropertieManager.getInstance().getZuordnung().getWriter().overwriteFile(PropertieManager.getInstance().getZuordnung().getPath().getFilepath(), jTextArea1.getText());
+    private void fileItemOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileItemOpenActionPerformed
+//        System.exit(0); 
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            PropertieManager.getInstance().getZuordnung().getPath().setFilename(file.getName());
+            String[] splitPath = file.getAbsolutePath().split("/");
+            StringBuilder buffer = new StringBuilder();
+            for (int i = 0; i < splitPath.length; i++) {
+                buffer.append("/").append(splitPath[i]);
+                if (i == splitPath.length - 2) {
+                    break;
+                }
+            }
+            PropertieManager.getInstance().getZuordnung().getPath().setFiledirectory(buffer.toString());
+            path = file.getAbsolutePath();
+
+            try {
+                // What to do with the file, e.g. display it in a TextArea
+                jEditorPane1.read(new FileReader(file.getAbsolutePath()), null);
+            } catch (IOException ex) {
+                System.out.println("problem accessing file" + file.getAbsolutePath());
+            }
+        } else {
+            System.out.println("File access cancelled by user.");
+        }
+    }//GEN-LAST:event_fileItemOpenActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        saveData();
+        System.out.println("save");
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+
+        PropertieManager.getInstance().changePropertie("zuordnung", "bank");
+        read();
+        fileItemOpen.setEnabled(false);
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+        PropertieManager.getInstance().changePropertie("zuordnung", "file");
+        read();
+        fileItemOpen.setEnabled(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    public void saveData() {
+        PropertieManager.getInstance().getZuordnung().getWriter().overwriteFile(path, jEditorPane1.getText());
+        System.out.println(path);
+        System.out.println(jEditorPane1.getText());
+    }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        add(jFileChooser1);
-        jFileChooser1.setVisible(true);
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    public void read() {
+        jEditorPane1.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(PropertieManager.getInstance().getZuordnung().getPath().getFilepath()));
+    }
 
     /**
      * @param args the command line arguments
@@ -177,15 +230,16 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JFileChooser fileChooser;
+    private javax.swing.JMenuItem fileItemOpen;
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
