@@ -87,20 +87,26 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
         if (object.getSource() == info) {
             JPopupMenu pop = new JPopupMenu();
             pop.add(new JLabel("Datenbank, kann kein file auswaehlen"));
-            pop.show(menuPanel, 0, 0);
+            pop.show(menubar, 0, 0);
 
         } else if (object.getSource() == file) {
             PropertieManager.getInstance().changePropertie("zuordnung", "file");
             Gui.getInstance().showMenue();
+            menu.setEnabled(true);
             
         } else if (object.getSource() == database) {
             PropertieManager.getInstance().changePropertie("zuordnung", "datenbank");
             Gui.getInstance().showMenue();
-
+            disenabledFilechooser();
         } else if (object.getSource() == menu) {
             MyFileBrowser.getInstance().showFiles();
         }
 
+    }
+
+    @Override
+    public void disenabledFilechooser() {
+        menu.setEnabled(false);
     }
 
 }

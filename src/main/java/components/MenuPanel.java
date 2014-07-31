@@ -17,4 +17,6 @@ public interface MenuPanel {
     
     JMenuBar getMenuBar();
     
+    void disenabledFilechooser();
+    
 }

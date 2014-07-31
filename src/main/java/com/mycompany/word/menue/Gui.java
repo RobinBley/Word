@@ -6,15 +6,19 @@
 package com.mycompany.word.menue;
 
 import com.mycompany.word.assignment.Zuordnung;
+import com.mycompany.word.assignment.ZuordnungJdbc;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import components.MenuBarPanel;
 import components.MenuPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +70,11 @@ public class Gui extends JFrame implements MenueInterface {
         setTitle("Oberflaeche");
         setJMenuBar(menuPanel.getMenuBar());
         getContentPane().add(panel);
+        if (zuordnung.getClass().equals(ZuordnungJdbc.class)) {
+            menuPanel.disenabledFilechooser();
+        }
+        setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width / 4, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+
         setLocationRelativeTo(null);
 
     }
@@ -77,9 +86,11 @@ public class Gui extends JFrame implements MenueInterface {
 
     @Override
     public void showMenue() {
+        setVisible(false);
         createWindow();
         refreshList();
         setVisible(true);
+
     }
 
     private void addListener() {
@@ -92,21 +103,21 @@ public class Gui extends JFrame implements MenueInterface {
             }
         });
 
-        textfield.addKeyListener(new KeyListener() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
 
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
+                int confirmed = JOptionPane.showConfirmDialog(null,
+                        "Speichern der Daten?", "Beenden",
+                        JOptionPane.YES_NO_OPTION);
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == 10) {
+                if (confirmed == JOptionPane.YES_OPTION) {
                     zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());
+
+                    dispose();
+                } else {
+                    dispose();
                 }
+
             }
         });
 
