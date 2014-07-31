@@ -8,6 +8,7 @@ package components;
 import com.mycompany.word.menue.Gui;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import java.awt.BorderLayout;
+import java.awt.MouseInfo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -54,7 +55,8 @@ public class MyFileBrowser extends JFrame implements Filebrowser {
     public void showFiles() {
         ArrayList<String> files = PropertieManager.getInstance().getZuordnung().getReader().showFiles(PropertieManager.getInstance().getZuordnung().getPath().getFiledirectory());
         if (files != null) {
-            setVisible(true);
+                setLocation(MouseInfo.getPointerInfo().getLocation());
+                setVisible(true);
             for (String file : files) {
                 if (file.equals(files.get(0)) && listModel.getSize() > 0) {
                     break;

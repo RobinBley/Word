@@ -61,7 +61,7 @@ public class Menue implements MenueInterface {
             String output = scan.next();
             zuordnung.getWriter().writeInFile(zuordnung.getPath().getFilepath(), output, true);
         } catch (Exception e) {
-            System.out.println("Falsche Eingabe");
+            e.printStackTrace();
         }
     }
 

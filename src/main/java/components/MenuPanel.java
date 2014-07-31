@@ -7,7 +7,6 @@
 package components;
 
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 
 /**
  *
