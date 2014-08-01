@@ -17,7 +17,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,13 +34,9 @@ public class Gui extends JFrame implements MenueInterface {
 
     private final JPanel panel;
     private final JButton button;
-//    private final JTextField textfield;
     private Zuordnung zuordnung;
-//    @Autowired
-//    @Qualifier("MenuBarPanel")
     private MenuPanel menuPanel;
     private JTextArea textfield;
-
     private static Gui instance = null;
 
     public static Gui getInstance() {
@@ -49,24 +50,19 @@ public class Gui extends JFrame implements MenueInterface {
         setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width / 4, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
         setLocationRelativeTo(null);
         instance = this;
-
         menuPanel = new MenuBarPanel();
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.LIGHT_GRAY);
-
         textfield = new JTextArea();
         panel.add(textfield);
+        JScrollPane scr = new JScrollPane(textfield, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        panel.add(scr);
         button = new JButton();
         button.setText("Save");
-//        panel.add(button, BorderLayout.SOUTH);
         addListener();
-        
-        
-        
-        
+
     }
 
     public void createWindow() {
@@ -77,7 +73,6 @@ public class Gui extends JFrame implements MenueInterface {
         if (zuordnung.getClass().equals(ZuordnungJdbc.class)) {
             menuPanel.disenabledFilechooser();
         }
-
 
     }
 
@@ -93,7 +88,8 @@ public class Gui extends JFrame implements MenueInterface {
         setVisible(true);
 
     }
-    public void saveData(){
+
+    public void saveData() {
         zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());
     }
 
@@ -110,18 +106,12 @@ public class Gui extends JFrame implements MenueInterface {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
 
-                if (!textfield.getText().equals(PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()))) {
+                if (!textfield.getText().equals("") && !textfield.getText().equals(PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()))) {
 
-                    int confirmed = JOptionPane.showConfirmDialog(null,
-                            "Speichern der Daten?", "Beenden",
-                            JOptionPane.YES_NO_OPTION);
+                    int confirmed = JOptionPane.showConfirmDialog(null, "Daten speichern?", "Beenden", JOptionPane.YES_NO_OPTION);
 
                     if (confirmed == JOptionPane.YES_OPTION) {
                         saveData();
-
-                        dispose();
-                    } else {
-                        dispose();
                     }
                 }
             }

@@ -26,19 +26,19 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     String path;
     private final static transient Logger log = Logger.getLogger(NewJFrame.class);
-    
+
     public NewJFrame() {
         path = PropertieManager.getInstance().getZuordnung().getPath().getFilepath();
         initComponents();
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 if (!jEditorPane1.getText().equals("")) {
-                    
+
                     if (!jEditorPane1.getText().equals(PropertieManager.getInstance().getZuordnung().getReader().readFile(path))) {
                         int confirmed = JOptionPane.showConfirmDialog(null,
                                 "Speichern der Daten?", "Beenden",
                                 JOptionPane.YES_NO_OPTION);
-                        
+
                         if (confirmed == JOptionPane.YES_OPTION) {
                             saveData();
                             dispose();
@@ -48,7 +48,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         read();
-        
+
     }
 
     /**
@@ -141,7 +141,6 @@ public class NewJFrame extends javax.swing.JFrame {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-//            PropertieManager.getInstance().getZuordnung().getPath().setFilename(file.getName());
             PropertieManager.getInstance().changePropertie("filename", file.getName());
             String[] splitPath = file.getAbsolutePath().split("/");
             StringBuilder buffer = new StringBuilder();
@@ -151,10 +150,9 @@ public class NewJFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-//            PropertieManager.getInstance().getZuordnung().getPath().setFiledirectory(buffer.toString());
             PropertieManager.getInstance().changePropertie("filedirectory", buffer.toString());
             path = file.getAbsolutePath();
-            
+
             try {
                 // What to do with the file, e.g. display it in a TextArea
                 jEditorPane1.read(new FileReader(file.getAbsolutePath()), null);
@@ -171,11 +169,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
-        
+
         PropertieManager.getInstance().changePropertie("zuordnung", "bank");
         read();
         fileItemOpen.setEnabled(false);
-        
+
 
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
@@ -184,11 +182,11 @@ public class NewJFrame extends javax.swing.JFrame {
         read();
         fileItemOpen.setEnabled(true);
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
-    
+
     public void saveData() {
         PropertieManager.getInstance().getZuordnung().getWriter().overwriteFile(path, jEditorPane1.getText());
     }
-    
+
     public void read() {
         jEditorPane1.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(PropertieManager.getInstance().getZuordnung().getPath().getFilepath()));
     }
@@ -209,7 +207,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             log.debug("NewJFrame" + ex);
         }

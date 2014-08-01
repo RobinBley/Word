@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -105,7 +107,29 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
             Gui.getInstance().showMenue();
             disenabledFilechooser();
         } else if (object.getSource() == menu) {
-            MyFileBrowser.getInstance().showFiles();
+//            MyFileBrowser.getInstance().showFiles();
+            // JFileChooser-Objekt erstellen
+           final JFileChooser chooser = new JFileChooser();
+            // Dialog zum Oeffnen von Dateien anzeigen
+            final int opt = chooser.showOpenDialog(null);
+            
+            if (opt == JFileChooser.APPROVE_OPTION){
+                 File file = chooser.getSelectedFile();
+            PropertieManager.getInstance().changePropertie("filename", file.getName());
+            PropertieManager.getInstance().getZuordnung().getPath().setFilename(file.getName());
+            String[] splitPath = file.getAbsolutePath().split("/");
+            StringBuilder buffer = new StringBuilder();
+            for (int i = 0; i < splitPath.length; i++) {
+                buffer.append("/").append(splitPath[i]);
+                if (i == splitPath.length - 2) {
+                    break;
+                }
+            }
+            PropertieManager.getInstance().changePropertie("filedirectory", buffer.toString());
+            PropertieManager.getInstance().getZuordnung().getPath().setFiledirectory(buffer.toString());
+            }
+            Gui.getInstance().refreshList();
+            
         } else if (object.getSource() == save) {
             Gui.getInstance().saveData();
         }
