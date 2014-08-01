@@ -55,23 +55,35 @@ public final class PropertieManager {
     public Zuordnung getZuordnung() {
         Zuordnung zuordnung;
         try {
-            final String zdg = props.getProperty("zuordnung");
-            if (zdg.contains("bank") || zdg.contains("jdbc")) {
-                zuordnung = (Zuordnung) ctx.getBean("zuordnungJdbc");
+            if (props.containsKey("zuordnung")) {
+                final String zdg = props.getProperty("zuordnung");
 
-            } else if (zdg.contains("file") || zdg.contains("impl") || zdg.contains("txt")) {
-                zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
+                if (zdg.contains("bank") || zdg.contains("jdbc")) {
+                    zuordnung = (Zuordnung) ctx.getBean("zuordnungJdbc");
+
+                } else if (zdg.contains("file") || zdg.contains("impl") || zdg.contains("txt")) {
+                    zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
+                } else {
+                    zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
+                }
             } else {
+                props.setProperty("zuordnung", "zuordnungImpl");
                 zuordnung = (Zuordnung) ctx.getBean("zuordnungImpl");
             }
             try {
+                if (props.containsKey("menue")) {
+                    final String menuename = props.getProperty("menue");
 
-                final String menuename = props.getProperty("menue");
-
-                if (menuename.contains("gui") || menuename.contains("gra")) {
+                    if (menuename.contains("gui") || menuename.contains("gra")) {
+                        zuordnung.setMenue(ctx.getBean(Gui.class));
+                    } else if (menuename.contains("con") || menuename.contains("men")) {
+                        zuordnung.setMenue(ctx.getBean(Menue.class));
+                    } else {
+                        zuordnung.setMenue(ctx.getBean(Gui.class));
+                    }
+                } else {
+                    props.setProperty("menue", "gui");
                     zuordnung.setMenue(ctx.getBean(Gui.class));
-                } else if (menuename.contains("con") || menuename.contains("men")) {
-                    zuordnung.setMenue(ctx.getBean(Menue.class));
                 }
 
             } catch (BeansException e) {

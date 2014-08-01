@@ -10,6 +10,7 @@ import com.mycompany.word.assignment.ZuordnungJdbc;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import components.MenuBarPanel;
 import components.MenuPanel;
+import components.ToolBar;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
