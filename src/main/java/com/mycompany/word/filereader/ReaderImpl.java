@@ -14,11 +14,21 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+/**
+ *
+ * @author rbley
+ * @see Liest Text einer Datei aus
+ */
 @Service
 public class ReaderImpl implements Reader {
 
     private final transient static Logger log = Logger.getLogger(ReaderImpl.class);
 
+    /**
+     *
+     * @param filepath
+     * @return Inhalt des angegebenen Dateipfads
+     */
     @Override
     public String readFile(String filepath) {
         final StringBuilder builder = new StringBuilder();
@@ -44,6 +54,11 @@ public class ReaderImpl implements Reader {
         return builder.toString();
     }
 
+    /**
+     *
+     * @param filepath
+     * @return Textdatein des angegebenen Dateipfads
+     */
     @Override
     public ArrayList<String> showFiles(String filepath) {
         final ArrayList<String> files = new ArrayList<>();

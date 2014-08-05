@@ -8,13 +8,14 @@ package com.mycompany.word.filewriter;
 /**
  *
  * @author rbley
+ * @see Schreibt Daten in ein Medium
  */
 public interface Writer {
 
     void writeInFile(String filepath, String text, boolean flag);
 
     void removeValue(String filepath, String text, int row);
-    
+
     void overwriteFile(String filepath, String text);
 
 }

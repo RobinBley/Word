@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author rbley
+ * @see Enthaelt Componenten des Programms um den Umgang mit Datenbanken zu
+ * ermoeglichen
  */
 @Service
 public class ZuordnungJdbc implements Zuordnung {

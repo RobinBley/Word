@@ -13,13 +13,17 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author rbley
+ * @author rbley 
+ * @see Bildet eine Consolen Oberflaeche
  */
 @Service
 public class Menue implements MenueInterface {
 
     private Zuordnung zuordnung;
 
+    /**
+     * Componenten des Programms werden geladen
+     */
     protected void showFiles(Scanner scan) {
         final ArrayList<String> files = zuordnung.getReader().showFiles(zuordnung.getPath().getFiledirectory());
         int counter = 0;
@@ -65,6 +69,9 @@ public class Menue implements MenueInterface {
         }
     }
 
+    /**
+     * Die Oberflaeche startet in der Console
+     */
     @Override
     public void showMenue() {
         zuordnung = PropertieManager.getInstance().getZuordnung();

@@ -18,12 +18,18 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author rbley
+ * @see liefert den Inhalt einer JDBC Datenbank
  */
 @Service
 public class ReaderJdbc implements Reader {
 
     private final static transient Logger log = Logger.getLogger(WriterJdbc.class);
 
+    /**
+     *
+     * @param table
+     * @return Inhalt des Angegebenen Datenbanktabels
+     */
     @Override
     public String readFile(String table) {
         Connection connection = JdbcConnection.getInstance().connect();
@@ -56,6 +62,11 @@ public class ReaderJdbc implements Reader {
         return null;
     }
 
+    /**
+     *
+     * @param table
+     * @return null
+     */
     @Override
     public ArrayList<String> showFiles(String table) {
 //        Connection connection = JdbcConnection.getInstance().connect();

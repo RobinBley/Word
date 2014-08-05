@@ -15,6 +15,8 @@ import com.mycompany.word.userinput.Eingabe;
 /**
  *
  * @author rbley
+ * @see
+ * Ein Zuordner enthaelt und sorgt fuer die gewuenschte Kombination von Componenten des Programms
  */
 public interface Zuordnung {
 

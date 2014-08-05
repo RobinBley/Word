@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author rbley
+ * @see Verwaltet Den Dateipfad einer Textdatei
  */
 @Service
 public class PathImpl implements Path {
-    
+
     @Value("${filedirectory}")
     private String filedirectory;
     @Value("${filename}")
@@ -19,6 +20,7 @@ public class PathImpl implements Path {
     public String getFilepath() {
         return filedirectory + "/" + filename;
     }
+
     @Override
     public String getFilename() {
         return filename;
@@ -28,6 +30,7 @@ public class PathImpl implements Path {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
     @Override
     public String getFiledirectory() {
         return filedirectory;
@@ -37,7 +40,5 @@ public class PathImpl implements Path {
     public void setFiledirectory(String filedirectory) {
         this.filedirectory = filedirectory;
     }
-
-
 
 }

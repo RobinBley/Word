@@ -25,6 +25,8 @@ import javax.swing.KeyStroke;
 /**
  *
  * @author rbley
+ *
+ * @see Ein Component der Oberflache, welche das Menu bildet
  */
 //@Service
 public class MenuBarPanel implements ActionListener, MenuPanel {
@@ -40,6 +42,9 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
     private JMenuItem file;
     private JMenuItem save;
 
+    /**
+     * Componenten werden initialisiert
+     */
     public MenuBarPanel() {
 
         menuPanel = new JPanel(new BorderLayout());
@@ -84,6 +89,10 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
         menubar.add(help);
     }
 
+    /**
+     *
+     * @return JMenuBar, welches vollstaendig initialisiert wurde
+     */
     @Override
     public JMenuBar getMenuBar() {
 
@@ -109,32 +118,35 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
         } else if (object.getSource() == menu) {
 //            MyFileBrowser.getInstance().showFiles();
             // JFileChooser-Objekt erstellen
-           final JFileChooser chooser = new JFileChooser();
+            final JFileChooser chooser = new JFileChooser();
             // Dialog zum Oeffnen von Dateien anzeigen
             final int opt = chooser.showOpenDialog(null);
-            
-            if (opt == JFileChooser.APPROVE_OPTION){
-                 File file = chooser.getSelectedFile();
-            PropertieManager.getInstance().changePropertie("filename", file.getName());
-            PropertieManager.getInstance().getZuordnung().getPath().setFilename(file.getName());
-            String[] splitPath = file.getAbsolutePath().split("/");
-            StringBuilder buffer = new StringBuilder();
-            for (int i = 0; i < splitPath.length; i++) {
-                buffer.append("/").append(splitPath[i]);
-                if (i == splitPath.length - 2) {
-                    break;
+
+            if (opt == JFileChooser.APPROVE_OPTION) {
+                File file = chooser.getSelectedFile();
+                PropertieManager.getInstance().changePropertie("filename", file.getName());
+                PropertieManager.getInstance().getZuordnung().getPath().setFilename(file.getName());
+                String[] splitPath = file.getAbsolutePath().split("/");
+                StringBuilder buffer = new StringBuilder();
+                for (int i = 0; i < splitPath.length; i++) {
+                    buffer.append("/").append(splitPath[i]);
+                    if (i == splitPath.length - 2) {
+                        break;
+                    }
                 }
-            }
-            PropertieManager.getInstance().changePropertie("filedirectory", buffer.toString());
-            PropertieManager.getInstance().getZuordnung().getPath().setFiledirectory(buffer.toString());
+                PropertieManager.getInstance().changePropertie("filedirectory", buffer.toString());
+                PropertieManager.getInstance().getZuordnung().getPath().setFiledirectory(buffer.toString());
             }
             Gui.getInstance().refreshList();
-            
+
         } else if (object.getSource() == save) {
             Gui.getInstance().saveData();
         }
     }
 
+    /**
+     * "Graut" die Option aus eine Datei auszuwaehlen.
+     */
     @Override
     public void disenabledFilechooser() {
         menu.setEnabled(false);

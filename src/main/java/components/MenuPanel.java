@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package components;
 
 import javax.swing.JMenuBar;
@@ -11,11 +10,12 @@ import javax.swing.JMenuBar;
 /**
  *
  * @author rbley
+ * @see Bildet das Menu einer Oberflaeche
  */
 public interface MenuPanel {
-    
+
     JMenuBar getMenuBar();
-    
+
     void disenabledFilechooser();
-    
+
 }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author rbley
+ * @see Sorgt fuer die Verbindung zu einer JDBC Datenbank
  */
 @Service
 public class JdbcConnection {
@@ -25,6 +26,10 @@ public class JdbcConnection {
     private final static transient Logger log = Logger.getLogger(WriterJdbc.class);
     private static JdbcConnection instance = null;
 
+    /**
+     *
+     * @return eine Instance der eigenen Klasse
+     */
     public static JdbcConnection getInstance() {
         if (instance == null) {
             instance = new JdbcConnection();
@@ -32,6 +37,10 @@ public class JdbcConnection {
         return instance;
     }
 
+    /**
+     *
+     * @return eine Verbindung zu einer Datenbank
+     */
     public Connection connect() {
         try {
 

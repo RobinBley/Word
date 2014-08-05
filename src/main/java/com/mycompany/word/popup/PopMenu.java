@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.word.popup;
 
 import com.mycompany.word.filewriter.Writer;
@@ -15,9 +14,11 @@ import javax.swing.JPopupMenu;
 /**
  *
  * @author rbley
+ * @see Ein Graphisches Fenster, welches eine Option bildet, ein Element einer
+ * Liste zu loeschen.
  */
 public class PopMenu extends JPopupMenu {
-    
+
     private String value;
     private Writer writer;
 
@@ -36,8 +37,10 @@ public class PopMenu extends JPopupMenu {
     public void setValue(String value) {
         this.value = value;
     }
-    
-    
+
+    /**
+     * Zeigt das Graphische Menu an
+     */
     public PopMenu() {
         JButton button = new JButton("remove");
         button.addActionListener(new ActionListener() {
@@ -47,12 +50,12 @@ public class PopMenu extends JPopupMenu {
                 System.out.println(e.toString());
                 System.out.println(value);
 //                writer.removeValue(null, value, );
-                
+
             }
         });
-        
+
         add(button);
-        
+
     }
-    
+
 }

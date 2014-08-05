@@ -21,6 +21,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  *
  * @author rbley
+ * @see Verwaltet die Properties und sorgt fuer die Zuordnungen der Componenten
+ * des gesamten Programms
  */
 public final class PropertieManager {
 
@@ -29,6 +31,10 @@ public final class PropertieManager {
     private final transient Properties props;
     private final transient ClassPathXmlApplicationContext ctx;
 
+    /**
+     *
+     * @return eine Istance der eigenen Klasse
+     */
     public static PropertieManager getInstance() {
         synchronized (PropertieManager.class) {
 
@@ -39,6 +45,9 @@ public final class PropertieManager {
         return instance;
     }
 
+    /**
+     * Lead die Programm-Properties
+     */
     public PropertieManager() {
         ctx = new ClassPathXmlApplicationContext("application-context.xml");
 
@@ -52,6 +61,10 @@ public final class PropertieManager {
 
     }
 
+    /**
+     *
+     * @return Die Richtige zusammensetzung iner Zuordnungsklasse.
+     */
     public Zuordnung getZuordnung() {
         Zuordnung zuordnung;
         try {
@@ -96,16 +109,31 @@ public final class PropertieManager {
         return zuordnung;
     }
 
+    /**
+     *
+     * @return Optionen der Properties
+     */
     public String[] getMenufields() {
 
         return props.getProperty("menuefelder").split(",");
 
     }
 
+    /**
+     *
+     * @return aktuelle Programm-Properties
+     */
     public Properties getPropertie() {
         return props;
     }
 
+    /**
+     *
+     * @param propertie
+     * @param value
+     *
+     * Aendert ein Wert eines Keys der Programm-Properties und speichert diese.
+     */
     public void changePropertie(final String propertie, final String value) {
 
         try {

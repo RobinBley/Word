@@ -15,12 +15,21 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author rbley
+ * @see Schreibt Datensaetze in eine JDBC Datenbank
  */
 @Service
 public class WriterJdbc implements Writer {
 
     private final static transient Logger log = Logger.getLogger(WriterJdbc.class);
 
+    /**
+     *
+     * @param col
+     * @param text
+     * @param flag
+     *
+     * Schreibt einen Datensatz in eine Tabelle
+     */
     @Override
     public void writeInFile(final String col, final String text, final boolean flag) {
 
@@ -38,6 +47,14 @@ public class WriterJdbc implements Writer {
         }
     }
 
+    /**
+     *
+     * @param filepath
+     * @param text
+     * @param row
+     *
+     * Loescht eine Zeile einer Tabelle
+     */
     @Override
     public void removeValue(final String filepath, final String text, final int row) {
 
@@ -56,6 +73,13 @@ public class WriterJdbc implements Writer {
 
     }
 
+    /**
+     *
+     * @param filepath
+     * @param text
+     *
+     * ueberschreibt einen Table
+     */
     @Override
     public void overwriteFile(String filepath, String text) {
         //Falsche implementation!!!

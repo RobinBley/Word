@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.word.readdirectoy;
 
 /**
  *
  * @author rbley
+ * @see Zeigt die Datein eines Orderns
  */
 public interface Directoyreader {
-    
+
     String showFiles();
-    
+
 }

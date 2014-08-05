@@ -10,7 +10,6 @@ import com.mycompany.word.assignment.ZuordnungJdbc;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import components.MenuBarPanel;
 import components.MenuPanel;
-import components.ToolBar;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -29,6 +28,7 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author rbley
+ * @see Zeigt ein Graphical User Interface
  */
 @Service
 public class Gui extends JFrame implements MenueInterface {
@@ -36,8 +36,8 @@ public class Gui extends JFrame implements MenueInterface {
     private final JPanel panel;
     private final JButton button;
     private Zuordnung zuordnung;
-    private MenuPanel menuPanel;
-    private JTextArea textfield;
+    private final MenuPanel menuPanel;
+    private final JTextArea textfield;
     private static Gui instance = null;
 
     public static Gui getInstance() {
@@ -47,10 +47,13 @@ public class Gui extends JFrame implements MenueInterface {
         return instance;
     }
 
+    /**
+     * Componenten der Oberflaeche werden Initialisiert
+     */
     public Gui() {
+        instance = this;
         setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width / 4, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
         setLocationRelativeTo(null);
-        instance = this;
         menuPanel = new MenuBarPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -66,6 +69,9 @@ public class Gui extends JFrame implements MenueInterface {
 
     }
 
+    /**
+     * Erstellt das Fenster der Oberflaeche
+     */
     public void createWindow() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
         setTitle("Oberflaeche");
@@ -77,11 +83,17 @@ public class Gui extends JFrame implements MenueInterface {
 
     }
 
+    /**
+     * Laed den Inhalt der Oberflaeche neu
+     */
     public void refreshList() {
         textfield.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()));
 
     }
 
+    /**
+     * Zeigt die Oberflache
+     */
     @Override
     public void showMenue() {
         createWindow();
@@ -90,6 +102,9 @@ public class Gui extends JFrame implements MenueInterface {
 
     }
 
+    /**
+     * Sorgt fuer das Speichern der eigegebenen Daten
+     */
     public void saveData() {
         zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());
     }
@@ -105,6 +120,7 @@ public class Gui extends JFrame implements MenueInterface {
         });
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
 
                 if (!textfield.getText().equals("") && !textfield.getText().equals(PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()))) {

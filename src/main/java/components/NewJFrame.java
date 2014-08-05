@@ -18,6 +18,8 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author rbley
+ *
+ * @see Bildet eine Graphische User Oberflaeche
  */
 public class NewJFrame extends javax.swing.JFrame {
 
@@ -27,6 +29,9 @@ public class NewJFrame extends javax.swing.JFrame {
     String path;
     private final static transient Logger log = Logger.getLogger(NewJFrame.class);
 
+    /**
+     * Initialisiuerung der Componenten
+     */
     public NewJFrame() {
         path = PropertieManager.getInstance().getZuordnung().getPath().getFilepath();
         initComponents();
@@ -183,10 +188,17 @@ public class NewJFrame extends javax.swing.JFrame {
         fileItemOpen.setEnabled(true);
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
+    /**
+     * Sorgt fuer die Speicherung der eingegebenen Daten
+     */
     public void saveData() {
         PropertieManager.getInstance().getZuordnung().getWriter().overwriteFile(path, jEditorPane1.getText());
     }
 
+    /**
+     * Uebergibt dem Textfeld der Oberflache den Inhalt einer ausgewaehlten
+     * Datei
+     */
     public void read() {
         jEditorPane1.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(PropertieManager.getInstance().getZuordnung().getPath().getFilepath()));
     }

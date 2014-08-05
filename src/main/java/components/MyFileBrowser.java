@@ -17,12 +17,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
+/**
+ *
+ * @author rbley
+ *
+ * @see Eine Oberflaeche, welche es den User ermoeglicht eine Datei in einem
+ * Ordner auszuwaehlen.
+ */
 public class MyFileBrowser extends JFrame implements Filebrowser {
 
     private final JList list;
     private final DefaultListModel listModel;
     private static MyFileBrowser instance = null;
 
+    /**
+     *
+     * @return eine Instance der eigenen Klasse
+     */
     public static MyFileBrowser getInstance() {
         if (instance == null) {
             instance = new MyFileBrowser();
@@ -51,12 +62,16 @@ public class MyFileBrowser extends JFrame implements Filebrowser {
         pack();
     }
 
+    /**
+     * Oeffnet die Oberflaeche und laesst den User die Wahl einer Datei
+     * taetigen.
+     */
     @Override
     public void showFiles() {
         ArrayList<String> files = PropertieManager.getInstance().getZuordnung().getReader().showFiles(PropertieManager.getInstance().getZuordnung().getPath().getFiledirectory());
         if (files != null) {
-                setLocation(MouseInfo.getPointerInfo().getLocation());
-                setVisible(true);
+            setLocation(MouseInfo.getPointerInfo().getLocation());
+            setVisible(true);
             for (String file : files) {
                 if (file.equals(files.get(0)) && listModel.getSize() > 0) {
                     break;

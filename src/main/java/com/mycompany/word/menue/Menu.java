@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author rbley
+ * @see Bildet eine Consolen Oberflaeche
  */
 //@Service
 public class Menu {
@@ -22,6 +23,9 @@ public class Menu {
     private final static transient Logger log = Logger.getLogger(WriterJdbc.class);
     Zuordnung zuordnung;
 
+    /**
+     * Componenten des Programms werden geladen
+     */
     public Menu() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
     }
@@ -47,7 +51,10 @@ public class Menu {
 
     }
 
-    void showMenue() {
+    /**
+     * Die Oberflaeche startet in der Console
+     */
+    public void showMenue() {
 
         Scanner scan = new Scanner(System.in);
 
