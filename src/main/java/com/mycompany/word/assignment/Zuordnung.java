@@ -15,7 +15,7 @@ import com.mycompany.word.userinput.Eingabe;
 /**
  *
  * Ein Zuordner enthaelt und sorgt fuer die gewuenschte Kombination von
- * Componenten des Programms
+ * Komponenten des Programms.
  *
  * @author rbley
  */

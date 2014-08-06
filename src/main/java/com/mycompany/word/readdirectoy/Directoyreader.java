@@ -7,7 +7,7 @@ package com.mycompany.word.readdirectoy;
 
 /**
  *
- * Zeigt die Datein eines Orderns
+ * Zeigt die Datein eines Orderns.
  *
  * @author rbley
  */

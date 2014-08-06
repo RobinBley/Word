@@ -16,8 +16,8 @@ public final class App {
 
     /**
      *
-     * Die Hauptmethode startet das Programm, indem sie die Funktion showMenu()
-     * eines Menus aufruft und somit das Userinterface oeffnet
+     * Die Hauptmethode startet das Programm, indem sie die Methode showMenu()
+     * eines "Menu"s aufruft und somit das Userinterface oeffnet.
      *
      *
      */

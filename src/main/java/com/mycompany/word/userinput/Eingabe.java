@@ -6,7 +6,7 @@
 package com.mycompany.word.userinput;
 
 /**
- * Sorgt fuer die korrekten Anforderungen an den User
+ * Sorgt fuer die korrekten Anforderungen an den User.
  *
  * @author rbley
  */

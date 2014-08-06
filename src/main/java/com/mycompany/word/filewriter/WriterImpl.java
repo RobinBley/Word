@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * Schreibt daten in einer Textdatei
+ * Schreibt Daten in eine Textdatei.
  *
  * @author rbley
  */
@@ -28,9 +28,9 @@ public class WriterImpl implements Writer {
     /**
      * Schreibt Daten in eine Textdatei.
      *
-     * @param filepath Pfad der zulesenden Datei
-     * @param text String, welcher in die Datei geschrieben werden soll
-     * @param flag Boolean, ob Text angehangen oder ueberschrieben werden soll
+     * @param filepath Pfad der zulesenden Datei.
+     * @param text String, welcher in die Datei geschrieben werden soll.
+     * @param flag Boolean, ob Text angehangen oder ueberschrieben werden soll.
      *
      */
     @Override
@@ -47,10 +47,10 @@ public class WriterImpl implements Writer {
     }
 
     /**
-     * loescht eine Zeile in einer Textdatei
+     * loescht eine Zeile einer Textdatei.
      *
-     * @param filepath Pfad der Datei
-     * @param text String, welcher aus der Datei geloescht werden soll
+     * @param filepath Pfad der Datei.
+     * @param text String, welcher aus der Datei geloescht werden soll.
      * @param row Zeile, welche geloescht werden soll.
      *
      */
@@ -92,10 +92,10 @@ public class WriterImpl implements Writer {
     }
 
     /**
-     * Ueberschreibt eine Textdatei.
+     * Ueberschreibt den Inhalt einer Textdatei.
      *
-     * @param filepath Pfad der zulesenden Datei
-     * @param text String, welcher in die Datei geschrieben werden soll
+     * @param filepath Pfad der zulesenden Datei.
+     * @param text String, welcher in die Datei geschrieben werden soll.
      *
      */
     @Override

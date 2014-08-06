@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * Schreibt Datensaetze in eine JDBC Datenbank
+ * Schreibt Datensaetze in eine JDBC Datenbank.
  *
  * @author rbley
  */
@@ -25,7 +25,7 @@ public class WriterJdbc implements Writer {
 
     /**
      *
-     * Schreibt einen Datensatz in eine Tabelle
+     * Schreibt einen Datensatz in eine Tabelle.
      *
      * @param col
      * @param text
@@ -51,7 +51,7 @@ public class WriterJdbc implements Writer {
 
     /**
      *
-     * Loescht eine Zeile einer Tabelle
+     * Loescht eine Zeile einer Tabelle.
      *
      * @param filepath
      * @param text
@@ -77,10 +77,10 @@ public class WriterJdbc implements Writer {
     }
 
     /**
-     * ueberschreibt einen Table
+     * Ueberschreibt eine Datenbanktabelle.
      *
-     * @param filepath
-     * @param text
+     * @param filepath Ungenutzer Parameter des Interfaces.
+     * @param text Inhalt, womit die Tabelle ueberschrieben werden soll.
      *
      */
     @Override

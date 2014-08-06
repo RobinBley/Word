@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * Verwaltet Den Dateipfad einer Textdatei
+ * Verwaltet Den Dateipfad einer Textdatei.
  *
  * @author rbley
  */

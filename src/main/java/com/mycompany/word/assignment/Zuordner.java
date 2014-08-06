@@ -92,6 +92,10 @@ public class Zuordner implements Zuordnung {
         this.ausgabe = ausgabe;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Eingabe getEingabe() {
         return eingabe;

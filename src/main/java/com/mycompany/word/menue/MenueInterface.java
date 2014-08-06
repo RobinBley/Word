@@ -6,7 +6,7 @@
 package com.mycompany.word.menue;
 
 /**
- * Bildet ein Userinterface des Programms
+ * Bildet ein Userinterface des Programms.
  *
  * @author rbley
  */

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * liest Daten aus einem Medium
+ * liest Daten aus einem Medium.
  *
  * @author rbley
  *

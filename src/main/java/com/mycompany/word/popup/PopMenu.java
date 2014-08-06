@@ -13,7 +13,7 @@ import javax.swing.JPopupMenu;
 
 /**
  *
- * Ein Graphisches Fenster, welches eine Option bildet, ein Element einer Liste
+ * Ein Graphisches Fenster, welches die Option bildet, ein Element einer Liste
  * zu loeschen.
  *
  * @author rbley
@@ -40,7 +40,7 @@ public class PopMenu extends JPopupMenu {
     }
 
     /**
-     * Zeigt das Graphische Menu an
+     * Zeigt das Graphische Menu an.
      */
     public PopMenu() {
         JButton button = new JButton("remove");

@@ -1,7 +1,7 @@
 package com.mycompany.word.paths;
 
 /**
- * Liefert den Pfad fuer ein Medium
+ * Liefert den Pfad fuer ein Medium.
  *
  * @author rbley
  */

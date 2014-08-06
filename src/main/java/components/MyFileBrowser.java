@@ -33,7 +33,7 @@ public class MyFileBrowser extends JFrame implements Filebrowser {
 
     /**
      *
-     * @return eine Instanz der eigenen Klasse
+     * @return Eine Instanz der eigenen Klasse.
      */
     public static MyFileBrowser getInstance() {
         if (instance == null) {

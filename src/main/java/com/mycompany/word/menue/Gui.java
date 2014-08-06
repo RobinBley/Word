@@ -26,7 +26,7 @@ import javax.swing.JTextArea;
 import org.springframework.stereotype.Service;
 
 /**
- * Zeigt ein Graphical User Interface
+ * Zeigt ein Graphical User Interface.
  *
  * @author rbley
  */
@@ -40,6 +40,10 @@ public class Gui extends JFrame implements MenueInterface {
     private final JTextArea textfield;
     private static Gui instance = null;
 
+    /**
+     *
+     * @return Eine Instanz der eigenen Klasse.
+     */
     public static Gui getInstance() {
         if (instance == null) {
             instance = new Gui();
@@ -48,7 +52,7 @@ public class Gui extends JFrame implements MenueInterface {
     }
 
     /**
-     * Componenten der Oberflaeche werden Initialisiert
+     * Kmponenten der Oberflaeche werden Initialisiert.
      */
     public Gui() {
         instance = this;
@@ -70,7 +74,7 @@ public class Gui extends JFrame implements MenueInterface {
     }
 
     /**
-     * Erstellt das Fenster der Oberflaeche
+     * Erstellt das Fenster der Oberflaeche.
      */
     public void createWindow() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
@@ -84,7 +88,7 @@ public class Gui extends JFrame implements MenueInterface {
     }
 
     /**
-     * Laed den Inhalt der Oberflaeche neu
+     * Laed den Inhalt der Oberflaeche neu.
      */
     public void refreshList() {
         textfield.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(zuordnung.getPath().getFilepath()));
@@ -92,7 +96,7 @@ public class Gui extends JFrame implements MenueInterface {
     }
 
     /**
-     * Zeigt die Oberflache
+     * Zeigt die Oberflache.
      */
     @Override
     public void showMenue() {
@@ -103,7 +107,7 @@ public class Gui extends JFrame implements MenueInterface {
     }
 
     /**
-     * Sorgt fuer das Speichern der eigegebenen Daten
+     * Sorgt fuer das Speichern der eigegebenen Daten.
      */
     public void saveData() {
         zuordnung.getWriter().overwriteFile(zuordnung.getPath().getFilepath(), textfield.getText());

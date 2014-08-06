@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * Enthaelt Componenten des Programms um den Umgang mit Datein zu ermoeglichen
+ * Enthaelt Komponenten des Programms, um den Umgang mit Datein zu ermoeglichen.
  *
  * @author rbley
  *

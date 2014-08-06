@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * Bildet eine Consolen Oberflaeche
+ * Bildet eine Consolen Oberflaeche.
  *
  * @author rbley
  */
@@ -25,7 +25,7 @@ public class Menu {
     Zuordnung zuordnung;
 
     /**
-     * Componenten des Programms werden geladen
+     * Komponenten des Programms werden geladen.
      */
     public Menu() {
         zuordnung = PropertieManager.getInstance().getZuordnung();
@@ -53,7 +53,7 @@ public class Menu {
     }
 
     /**
-     * Die Oberflaeche startet in der Console
+     * Die Oberflaeche startet in der Console.
      */
     public void showMenue() {
 

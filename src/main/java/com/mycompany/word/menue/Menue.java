@@ -12,7 +12,7 @@ import java.util.Scanner;
 import org.springframework.stereotype.Service;
 
 /**
- * Bildet eine Consolen Oberflaeche
+ * Bildet eine Consolen Oberflaeche.
  *
  * @author rbley
  */
@@ -22,7 +22,7 @@ public class Menue implements MenueInterface {
     private Zuordnung zuordnung;
 
     /**
-     * Componenten des Programms werden geladen
+     * Komponenten des Programms werden geladen.
      */
     protected void showFiles(Scanner scan) {
         final ArrayList<String> files = zuordnung.getReader().showFiles(zuordnung.getPath().getFiledirectory());
@@ -70,7 +70,7 @@ public class Menue implements MenueInterface {
     }
 
     /**
-     * Die Oberflaeche startet in der Console
+     * Die Oberflaeche startet in der Console.
      */
     @Override
     public void showMenue() {

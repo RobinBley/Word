@@ -5,6 +5,7 @@
  */
 package components;
 
+import com.mycompany.word.menue.*;
 import com.mycompany.word.propertiehandling.PropertieManager;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -14,25 +15,28 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 /**
- * Bildet eine Graphische User Oberflaeche
+ * Bildet eine Graphische User Oberflaeche.
  *
  * @author rbley
  *
  */
-public class NewJFrame extends javax.swing.JFrame {
+@Service
+public class NewJFrame extends javax.swing.JFrame implements MenueInterface {
 
     /**
      * Creates new form NewJFrame
      */
     String path;
     private final static transient Logger log = Logger.getLogger(NewJFrame.class);
+    private static NewJFrame instance;
 
     /**
-     * Initialisiuerung der Componenten
+     * Initialisiuerung der Komponenten.
      */
-    public NewJFrame() {
+    private void setup() {
         path = PropertieManager.getInstance().getZuordnung().getPath().getFilepath();
         initComponents();
         addWindowListener(new WindowAdapter() {
@@ -53,7 +57,25 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         read();
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
 
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            log.debug("NewJFrame" + ex);
+        }
+
+    }
+
+    public static MenueInterface getInstance() {
+        if (instance == null) {
+            instance = new NewJFrame();
+        }
+        return instance;
     }
 
     /**
@@ -189,7 +211,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
     /**
-     * Sorgt fuer die Speicherung der eingegebenen Daten
+     * Sorgt fuer die Speicherung der eingegebenen Daten.
      */
     public void saveData() {
         PropertieManager.getInstance().getZuordnung().getWriter().overwriteFile(path, jEditorPane1.getText());
@@ -197,7 +219,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     /**
      * Uebergibt dem Textfeld der Oberflache den Inhalt einer ausgewaehlten
-     * Datei
+     * Datei.
      */
     public void read() {
         jEditorPane1.setText(PropertieManager.getInstance().getZuordnung().getReader().readFile(PropertieManager.getInstance().getZuordnung().getPath().getFilepath()));
@@ -206,32 +228,32 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            log.debug("NewJFrame" + ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewJFrame().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//
+//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+//            log.debug("NewJFrame" + ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new NewJFrame().setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFileChooser fileChooser;
@@ -245,4 +267,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void showMenue() {
+        setup();
+        setVisible(true);
+    }
 }

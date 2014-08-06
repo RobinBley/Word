@@ -23,7 +23,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
 
 /**
- * Ein Component der Oberflache, welche das Menu bildet
+ * Ein Component der Oberflache, welche das Menu bildet.
  *
  * @author rbley
  *
@@ -43,7 +43,7 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
     private JMenuItem save;
 
     /**
-     * Komponenten werden initialisiert
+     * Komponenten werden initialisiert.
      */
     public MenuBarPanel() {
 
@@ -91,7 +91,7 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
 
     /**
      *
-     * @return JMenuBar, welches vollstaendig initialisiert wurde
+     * @return JMenuBar, welche vollstaendig initialisiert wurde.
      */
     @Override
     public JMenuBar getMenuBar() {

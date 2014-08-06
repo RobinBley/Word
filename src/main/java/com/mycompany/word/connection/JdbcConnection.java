@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * Sorgt fuer die Verbindung zu einer JDBC Datenbank
+ * Sorgt fuer die Verbindung zu einer JDBC Datenbank.
  *
  * @author rbley
  */
@@ -28,7 +28,7 @@ public class JdbcConnection {
 
     /**
      *
-     * @return eine Instanz der eigenen Klasse
+     * @return eine Instanz der eigenen Klasse.
      */
     public static JdbcConnection getInstance() {
         if (instance == null) {
@@ -39,7 +39,7 @@ public class JdbcConnection {
 
     /**
      *
-     * @return eine Verbindung zu einer Datenbank
+     * @return Eine Verbindung zu einer Datenbank.
      */
     public Connection connect() {
         try {

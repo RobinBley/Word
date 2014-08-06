@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * liefert den Inhalt einer JDBC Datenbank
+ * liefert den Inhalt einer JDBC Datenbank.
  *
  * @author rbley
  */
@@ -28,8 +28,8 @@ public class ReaderJdbc implements Reader {
 
     /**
      *
-     * @param table Tabellenname
-     * @return Inhalt des Angegebenen Datenbanktabels
+     * @param table Tabellenname.
+     * @return Inhalt des Angegebenen Datenbanktabels.
      */
     @Override
     public String readFile(String table) {
@@ -65,8 +65,8 @@ public class ReaderJdbc implements Reader {
 
     /**
      *
-     * @param table Tabellenname
-     * @return null
+     * @param table Tabellenname.
+     * @return null.
      */
     @Override
     public ArrayList<String> showFiles(String table) {

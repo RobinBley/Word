@@ -7,7 +7,7 @@ package com.mycompany.word.filewriter;
 
 /**
  *
- * Schreibt Daten in ein Medium
+ * Schreibt Daten in ein Medium.
  *
  * @author rbley
  */

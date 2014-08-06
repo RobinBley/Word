@@ -9,7 +9,7 @@ import javax.swing.JMenuBar;
 
 /**
  *
- * Bildet das Menu einer Oberflaeche
+ * Bildet das Menu einer Oberflaeche.
  *
  * @author rbley
  */

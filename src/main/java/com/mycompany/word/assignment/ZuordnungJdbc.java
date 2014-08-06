@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * Enthaelt Componenten des Programms um den Umgang mit Datenbanken zu
- * ermoeglichen
+ * Enthaelt Komponenten des Programms, um den Umgang mit einer Datenbank zu
+ * ermoeglichen.
  *
  * @author rbley
  */

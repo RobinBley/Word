@@ -9,6 +9,7 @@ import com.mycompany.word.assignment.Zuordnung;
 import com.mycompany.word.filereader.ReaderImpl;
 import com.mycompany.word.menue.Gui;
 import com.mycompany.word.menue.Menue;
+import components.NewJFrame;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +22,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  *
  * Verwaltet die Properties und sorgt fuer die Zuordnungen der Componenten des
- * gesamten Programms
+ * gesamten Programms.
  *
  * @author rbley
  */
@@ -34,7 +35,7 @@ public final class PropertieManager {
 
     /**
      *
-     * @return Eine Istanz der eigenen Klasse
+     * @return Eine Istanz der eigenen Klasse.
      */
     public static PropertieManager getInstance() {
         synchronized (PropertieManager.class) {
@@ -47,7 +48,7 @@ public final class PropertieManager {
     }
 
     /**
-     * Laed die Programm-Properties
+     * Laed die Programm-Properties.
      */
     public PropertieManager() {
         ctx = new ClassPathXmlApplicationContext("application-context.xml");
@@ -92,6 +93,8 @@ public final class PropertieManager {
                         zuordnung.setMenue(ctx.getBean(Gui.class));
                     } else if (menuename.contains("con") || menuename.contains("men")) {
                         zuordnung.setMenue(ctx.getBean(Menue.class));
+                    } else if (menuename.contains("two")) {
+                        zuordnung.setMenue(NewJFrame.getInstance());
                     } else {
                         zuordnung.setMenue(ctx.getBean(Gui.class));
                     }
@@ -112,7 +115,7 @@ public final class PropertieManager {
 
     /**
      *
-     * @return Optionen der Properties
+     * @return Optionen der Properties.
      */
     public String[] getMenufields() {
 
@@ -122,7 +125,7 @@ public final class PropertieManager {
 
     /**
      *
-     * @return Aktuelle Programm-Properties
+     * @return Aktuelle Programm-Properties.
      */
     public Properties getPropertie() {
         return props;
