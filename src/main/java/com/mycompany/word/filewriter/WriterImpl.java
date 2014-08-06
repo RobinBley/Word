@@ -16,8 +16,9 @@ import org.springframework.stereotype.Service;
 
 /**
  *
+ * Schreibt daten in einer Textdatei
+ *
  * @author rbley
- * @see Schreibt daten in einer Textdatei
  */
 @Service
 public class WriterImpl implements Writer {
@@ -25,12 +26,12 @@ public class WriterImpl implements Writer {
     private final static transient Logger log = Logger.getLogger(WriterJdbc.class);
 
     /**
-     *
-     * @param filepath
-     * @param text
-     * @param flag, ob Text angehangen oder ueberschrieben werden soll
-     *
      * Schreibt Daten in eine Textdatei.
+     *
+     * @param filepath Pfad der zulesenden Datei
+     * @param text String, welcher in die Datei geschrieben werden soll
+     * @param flag Boolean, ob Text angehangen oder ueberschrieben werden soll
+     *
      */
     @Override
     public void writeInFile(String filepath, final String text, final boolean flag) {
@@ -46,12 +47,12 @@ public class WriterImpl implements Writer {
     }
 
     /**
-     *
-     * @param filepath
-     * @param text
-     * @param row
-     *
      * loescht eine Zeile in einer Textdatei
+     *
+     * @param filepath Pfad der Datei
+     * @param text String, welcher aus der Datei geloescht werden soll
+     * @param row Zeile, welche geloescht werden soll.
+     *
      */
     @Override
     public void removeValue(String filepath, final String text, final int row) {
@@ -91,11 +92,11 @@ public class WriterImpl implements Writer {
     }
 
     /**
-     *
-     * @param filepath
-     * @param text
-     *
      * Ueberschreibt eine Textdatei.
+     *
+     * @param filepath Pfad der zulesenden Datei
+     * @param text String, welcher in die Datei geschrieben werden soll
+     *
      */
     @Override
     public void overwriteFile(String filepath, String text) {

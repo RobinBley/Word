@@ -12,9 +12,9 @@ import java.util.Scanner;
 import org.springframework.stereotype.Service;
 
 /**
+ * Bildet eine Consolen Oberflaeche
  *
- * @author rbley 
- * @see Bildet eine Consolen Oberflaeche
+ * @author rbley
  */
 @Service
 public class Menue implements MenueInterface {

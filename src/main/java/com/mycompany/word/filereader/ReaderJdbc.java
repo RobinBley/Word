@@ -17,8 +17,9 @@ import org.springframework.stereotype.Service;
 
 /**
  *
+ * liefert den Inhalt einer JDBC Datenbank
+ *
  * @author rbley
- * @see liefert den Inhalt einer JDBC Datenbank
  */
 @Service
 public class ReaderJdbc implements Reader {
@@ -27,7 +28,7 @@ public class ReaderJdbc implements Reader {
 
     /**
      *
-     * @param table
+     * @param table Tabellenname
      * @return Inhalt des Angegebenen Datenbanktabels
      */
     @Override
@@ -64,7 +65,7 @@ public class ReaderJdbc implements Reader {
 
     /**
      *
-     * @param table
+     * @param table Tabellenname
      * @return null
      */
     @Override

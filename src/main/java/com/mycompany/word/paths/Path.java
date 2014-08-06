@@ -1,9 +1,9 @@
 package com.mycompany.word.paths;
 
 /**
+ * Liefert den Pfad fuer ein Medium
  *
  * @author rbley
- * @see Liefert den Pfad fuer ein Medium
  */
 public interface Path {
 

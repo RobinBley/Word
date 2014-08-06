@@ -9,8 +9,9 @@ import javax.swing.JMenuBar;
 
 /**
  *
+ * Bildet das Menu einer Oberflaeche
+ *
  * @author rbley
- * @see Bildet das Menu einer Oberflaeche
  */
 public interface MenuPanel {
 

@@ -20,9 +20,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
+ * Verwaltet die Properties und sorgt fuer die Zuordnungen der Componenten des
+ * gesamten Programms
+ *
  * @author rbley
- * @see Verwaltet die Properties und sorgt fuer die Zuordnungen der Componenten
- * des gesamten Programms
  */
 public final class PropertieManager {
 
@@ -33,7 +34,7 @@ public final class PropertieManager {
 
     /**
      *
-     * @return eine Istance der eigenen Klasse
+     * @return Eine Istanz der eigenen Klasse
      */
     public static PropertieManager getInstance() {
         synchronized (PropertieManager.class) {
@@ -46,7 +47,7 @@ public final class PropertieManager {
     }
 
     /**
-     * Lead die Programm-Properties
+     * Laed die Programm-Properties
      */
     public PropertieManager() {
         ctx = new ClassPathXmlApplicationContext("application-context.xml");
@@ -63,7 +64,7 @@ public final class PropertieManager {
 
     /**
      *
-     * @return Die Richtige zusammensetzung iner Zuordnungsklasse.
+     * @return Die Richtige zusammensetzung einer Zuordnungsklasse.
      */
     public Zuordnung getZuordnung() {
         Zuordnung zuordnung;
@@ -121,7 +122,7 @@ public final class PropertieManager {
 
     /**
      *
-     * @return aktuelle Programm-Properties
+     * @return Aktuelle Programm-Properties
      */
     public Properties getPropertie() {
         return props;
@@ -129,10 +130,10 @@ public final class PropertieManager {
 
     /**
      *
-     * @param propertie
-     * @param value
-     *
      * Aendert ein Wert eines Keys der Programm-Properties und speichert diese.
+     *
+     * @param propertie Schluessel der zu veraendernden Propertie.
+     * @param value Wert, welche dem Schluessel zugeordnet werden soll.
      */
     public void changePropertie(final String propertie, final String value) {
 

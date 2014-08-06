@@ -23,10 +23,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
 
 /**
+ * Ein Component der Oberflache, welche das Menu bildet
  *
  * @author rbley
  *
- * @see Ein Component der Oberflache, welche das Menu bildet
  */
 //@Service
 public class MenuBarPanel implements ActionListener, MenuPanel {
@@ -43,7 +43,7 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
     private JMenuItem save;
 
     /**
-     * Componenten werden initialisiert
+     * Komponenten werden initialisiert
      */
     public MenuBarPanel() {
 

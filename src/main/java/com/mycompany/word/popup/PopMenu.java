@@ -13,9 +13,10 @@ import javax.swing.JPopupMenu;
 
 /**
  *
+ * Ein Graphisches Fenster, welches eine Option bildet, ein Element einer Liste
+ * zu loeschen.
+ *
  * @author rbley
- * @see Ein Graphisches Fenster, welches eine Option bildet, ein Element einer
- * Liste zu loeschen.
  */
 public class PopMenu extends JPopupMenu {
 

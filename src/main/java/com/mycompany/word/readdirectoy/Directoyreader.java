@@ -7,8 +7,9 @@ package com.mycompany.word.readdirectoy;
 
 /**
  *
+ * Zeigt die Datein eines Orderns
+ *
  * @author rbley
- * @see Zeigt die Datein eines Orderns
  */
 public interface Directoyreader {
 

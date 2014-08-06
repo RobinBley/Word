@@ -6,10 +6,9 @@
 package components;
 
 /**
+ * Eine Oberflaeche, welche es den User ermoeglicht eine Datei auszuwaehlen.
  *
  * @author rbley
- * @see Eine Oberflaeche, welche es den User ermoeglicht eine Datei
- * auszuwaehlen.
  */
 public interface Filebrowser {
 

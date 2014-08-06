@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 /**
+ * Bildet eine Graphische User Oberflaeche
  *
  * @author rbley
  *
- * @see Bildet eine Graphische User Oberflaeche
  */
 public class NewJFrame extends javax.swing.JFrame {
 

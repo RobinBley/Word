@@ -14,7 +14,7 @@ public interface Aenderer {
 
     /**
      *
-     * @param text
+     * @param text String, welcher veraendert werden soll.
      * @return Ein veraenderter String
      */
     String textAendern(String text);

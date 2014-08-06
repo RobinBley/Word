@@ -16,8 +16,9 @@ import org.springframework.stereotype.Service;
 
 /**
  *
+ * Liest Text einer Datei aus
+ *
  * @author rbley
- * @see Liest Text einer Datei aus
  */
 @Service
 public class ReaderImpl implements Reader {
@@ -26,7 +27,7 @@ public class ReaderImpl implements Reader {
 
     /**
      *
-     * @param filepath
+     * @param filepath Pfad der zulesenden Datei
      * @return Inhalt des angegebenen Dateipfads
      */
     @Override
@@ -56,8 +57,8 @@ public class ReaderImpl implements Reader {
 
     /**
      *
-     * @param filepath
-     * @return Textdatein des angegebenen Dateipfads
+     * @param filepath Pfad des zulesenden Ordners
+     * @return Textdateien des angegebenen Dateipfads
      */
     @Override
     public ArrayList<String> showFiles(String filepath) {

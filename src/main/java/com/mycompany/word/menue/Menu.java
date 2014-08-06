@@ -14,8 +14,9 @@ import org.apache.log4j.Logger;
 
 /**
  *
+ * Bildet eine Consolen Oberflaeche
+ *
  * @author rbley
- * @see Bildet eine Consolen Oberflaeche
  */
 //@Service
 public class Menu {

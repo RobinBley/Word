@@ -26,9 +26,9 @@ import javax.swing.JTextArea;
 import org.springframework.stereotype.Service;
 
 /**
+ * Zeigt ein Graphical User Interface
  *
  * @author rbley
- * @see Zeigt ein Graphical User Interface
  */
 @Service
 public class Gui extends JFrame implements MenueInterface {

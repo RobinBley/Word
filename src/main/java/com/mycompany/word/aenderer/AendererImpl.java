@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.word.aenderer;
 
 import org.springframework.stereotype.Service;
@@ -16,17 +15,17 @@ import org.springframework.stereotype.Service;
 public class AendererImpl implements Aenderer {
 
     private String lala;
-    
+
     /**
      *
-     * @param text
+     * @param text String, welcher veraendert werden soll.
      * @return der als parameter uebergebene String als Uppercase
      */
     @Override
     public String textAendern(String text) {
         String hallo;
         return text.toUpperCase();
-        
+
     }
-    
+
 }

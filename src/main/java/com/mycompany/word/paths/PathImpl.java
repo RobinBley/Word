@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 
 /**
  *
+ * Verwaltet Den Dateipfad einer Textdatei
+ *
  * @author rbley
- * @see Verwaltet Den Dateipfad einer Textdatei
  */
 @Service
 public class PathImpl implements Path {

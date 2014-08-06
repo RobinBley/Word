@@ -6,7 +6,6 @@
 
 package components;
 
-import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 /**

@@ -7,8 +7,9 @@ package com.mycompany.word.filewriter;
 
 /**
  *
+ * Schreibt Daten in ein Medium
+ *
  * @author rbley
- * @see Schreibt Daten in ein Medium
  */
 public interface Writer {
 

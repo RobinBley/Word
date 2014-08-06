@@ -6,9 +6,9 @@
 package com.mycompany.word.menue;
 
 /**
+ * Bildet ein Userinterface des Programms
  *
  * @author rbley
- * @see Bildet ein Userinterface des Programms
  */
 public interface MenueInterface {
 

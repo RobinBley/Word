@@ -9,14 +9,14 @@ import com.mycompany.word.filewriter.WriterJdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 /**
  *
+ * Sorgt fuer die Verbindung zu einer JDBC Datenbank
+ *
  * @author rbley
- * @see Sorgt fuer die Verbindung zu einer JDBC Datenbank
  */
 @Service
 public class JdbcConnection {
@@ -28,7 +28,7 @@ public class JdbcConnection {
 
     /**
      *
-     * @return eine Instance der eigenen Klasse
+     * @return eine Instanz der eigenen Klasse
      */
     public static JdbcConnection getInstance() {
         if (instance == null) {

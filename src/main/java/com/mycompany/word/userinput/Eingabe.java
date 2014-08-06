@@ -6,9 +6,9 @@
 package com.mycompany.word.userinput;
 
 /**
+ * Sorgt fuer die korrekten Anforderungen an den User
  *
  * @author rbley
- * @see Sorgt fuer die korrekte anvorderungen an den User
  */
 public interface Eingabe {
 

@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author rbley
- * @see
- *
  * Enthaelt Componenten des Programms um den Umgang mit Datein zu ermoeglichen
+ *
+ * @author rbley
+ *
  */
 @Service
 public class ZuordnungImpl implements Zuordnung {

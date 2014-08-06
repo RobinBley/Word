@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 /**
  *
+ * liest Daten aus einem Medium
+ *
  * @author rbley
- * @see liest Daten aus einem Medium
  *
  */
 public interface Reader {

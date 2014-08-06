@@ -13,15 +13,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ConsoleAusgabe implements Ausgabe {
-    
-    
-       /**
+
+    /**
      *
-     * @param output
      * Gibt einen String ueber die Konsole aus.
+     *
+     * @param output String, welcher ausgegeben werden soll.
      * @return true, wenn die Ausgabe erfolgreich war. Sonst false.
      */
-
     @Override
     public boolean ausgeben(final String output) {
         try {

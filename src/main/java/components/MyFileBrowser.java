@@ -19,10 +19,11 @@ import javax.swing.JList;
 
 /**
  *
+ * Eine Oberflaeche, welche es den User ermoeglicht eine Datei in einem Ordner
+ * auszuwaehlen.
+ *
  * @author rbley
  *
- * @see Eine Oberflaeche, welche es den User ermoeglicht eine Datei in einem
- * Ordner auszuwaehlen.
  */
 public class MyFileBrowser extends JFrame implements Filebrowser {
 
@@ -32,7 +33,7 @@ public class MyFileBrowser extends JFrame implements Filebrowser {
 
     /**
      *
-     * @return eine Instance der eigenen Klasse
+     * @return eine Instanz der eigenen Klasse
      */
     public static MyFileBrowser getInstance() {
         if (instance == null) {
