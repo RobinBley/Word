@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package components;
+package com.mycompany.word.components;
 
 import javax.swing.JToolBar;
 

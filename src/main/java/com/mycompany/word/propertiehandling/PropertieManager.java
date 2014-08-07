@@ -9,7 +9,7 @@ import com.mycompany.word.assignment.Zuordnung;
 import com.mycompany.word.filereader.ReaderImpl;
 import com.mycompany.word.menue.Gui;
 import com.mycompany.word.menue.Menue;
-import components.NewJFrame;
+import com.mycompany.word.components.NewJFrame;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

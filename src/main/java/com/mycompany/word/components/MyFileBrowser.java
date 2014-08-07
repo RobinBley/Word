@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package components;
+package com.mycompany.word.components;
 
 import com.mycompany.word.menue.Gui;
 import com.mycompany.word.propertiehandling.PropertieManager;

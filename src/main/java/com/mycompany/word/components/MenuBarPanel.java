@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package components;
+package com.mycompany.word.components;
 
 import com.mycompany.word.menue.Gui;
 import com.mycompany.word.propertiehandling.PropertieManager;
@@ -41,6 +41,7 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
     private JMenuItem database;
     private JMenuItem file;
     private JMenuItem save;
+//    private JMenuItem table;
 
     /**
      * Komponenten werden initialisiert.
@@ -65,6 +66,9 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
         save.addActionListener(this);
         save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         options.add(save);
+//        table = new JMenuItem("choose table");
+//        table.addActionListener(this);
+//        options.add(table);
 
         //Submenue
         submenu = new JMenu("data from..");
@@ -141,7 +145,9 @@ public class MenuBarPanel implements ActionListener, MenuPanel {
 
         } else if (object.getSource() == save) {
             Gui.getInstance().saveData();
-        }
+        }//else if (object.getSource() == table){
+//            
+//        }
     }
 
     /**
