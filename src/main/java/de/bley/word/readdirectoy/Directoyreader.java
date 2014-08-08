@@ -3,24 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
-import de.bley.word.menu.GuiMenu;
-import org.junit.Test;
+package de.bley.word.readdirectoy;
 
 /**
  *
+ * Zeigt die Datein eines Orderns.
+ *
  * @author rbley
+ * @deprecated 
  */
-public class GuiTest {
+public interface Directoyreader {
 
-    public GuiTest() {
-    }
-
-    @Test
-    public void test() {
-        GuiMenu gui = new GuiMenu();
-    }
+    String showFiles();
 
 }

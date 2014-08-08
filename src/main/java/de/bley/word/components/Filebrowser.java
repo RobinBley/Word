@@ -3,24 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
-import de.bley.word.menu.GuiMenu;
-import org.junit.Test;
+package de.bley.word.components;
 
 /**
+ * Eine Oberflaeche, welche es den User ermoeglicht eine Datei auszuwaehlen.
  *
  * @author rbley
+ * @deprecated 
  */
-public class GuiTest {
+public interface Filebrowser {
 
-    public GuiTest() {
-    }
-
-    @Test
-    public void test() {
-        GuiMenu gui = new GuiMenu();
-    }
+    void showFiles();
 
 }

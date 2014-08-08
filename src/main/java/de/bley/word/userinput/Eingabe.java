@@ -3,24 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
-import de.bley.word.menu.GuiMenu;
-import org.junit.Test;
+package de.bley.word.userinput;
 
 /**
+ * Sorgt fuer die korrekten Anforderungen an den User.
  *
  * @author rbley
  */
-public class GuiTest {
+public interface Eingabe {
 
-    public GuiTest() {
-    }
+    void showFile();
 
-    @Test
-    public void test() {
-        GuiMenu gui = new GuiMenu();
-    }
+    void readFile();
 
 }

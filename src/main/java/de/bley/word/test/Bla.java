@@ -4,23 +4,21 @@
  * and open the template in the editor.
  */
 
+package de.bley.word.test;
 
-
-import de.bley.word.menu.GuiMenu;
-import org.junit.Test;
+import de.bley.word.aenderer.Aenderer;
 
 /**
  *
  * @author rbley
+ * @deprecated 
  */
-public class GuiTest {
-
-    public GuiTest() {
-    }
-
-    @Test
-    public void test() {
-        GuiMenu gui = new GuiMenu();
-    }
-
+public interface Bla {
+    
+    void print();
+    
+    void setAenderer(Aenderer aenderer);
+    
+    Aenderer getAenderer();
+    
 }

@@ -3,24 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package de.bley.word.filereader;
 
-
-
-import de.bley.word.menu.GuiMenu;
-import org.junit.Test;
+import java.util.ArrayList;
 
 /**
  *
+ * liest Daten aus einem Medium.
+ *
  * @author rbley
+ *
  */
-public class GuiTest {
+public interface Reader {
 
-    public GuiTest() {
-    }
+    String readFile(String filepath);
 
-    @Test
-    public void test() {
-        GuiMenu gui = new GuiMenu();
-    }
+    ArrayList<String> showFiles(String filepath);
 
 }

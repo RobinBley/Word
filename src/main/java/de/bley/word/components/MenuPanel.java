@@ -3,24 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package de.bley.word.components;
 
-
-
-import de.bley.word.menu.GuiMenu;
-import org.junit.Test;
+import javax.swing.JMenuBar;
 
 /**
  *
+ * Bildet das Menu einer Oberflaeche.
+ *
  * @author rbley
  */
-public class GuiTest {
+public interface MenuPanel {
 
-    public GuiTest() {
-    }
+    JMenuBar getMenuBar();
 
-    @Test
-    public void test() {
-        GuiMenu gui = new GuiMenu();
-    }
+    void disenabledFilechooser();
 
 }
